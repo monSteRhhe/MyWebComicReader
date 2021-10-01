@@ -8,7 +8,7 @@
 
 随缘更新  ~~(菜)~~。
 
-[DEMO](https://monsterhhe.github.io/MyWebComicReader)
+[**DEMO**](https://monsterhhe.github.io/MyWebComicReader)
 
 ## Credits
 
