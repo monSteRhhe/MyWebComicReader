@@ -8,6 +8,10 @@
 
 写的很low，随缘更新  ~~(菜)~~。
 
+功能比较简单，只能看zip压缩包的漫画，只要里面是漫画，套了几层 ~~buff~~ 文件夹都行。
+
+文件类型的判断也还没整，之后随缘更。
+
 [**DEMO**](https://monsterhhe.github.io/MyWebComicReader)
 
 ## Credits
