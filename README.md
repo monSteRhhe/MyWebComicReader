@@ -6,7 +6,7 @@
 
 加载多图压缩包时会很慢。
 
-随缘更新  ~~(菜)~~。
+写的很low，随缘更新  ~~(菜)~~。
 
 [**DEMO**](https://monsterhhe.github.io/MyWebComicReader)
 
@@ -19,5 +19,5 @@
 
 ## Background Image:
 
-[monologue](https://www.pixiv.net/artworks/75685593) by <u>Pixiv@Yaduo铮粽子</u>
+[monologue](https://www.pixiv.net/artworks/75685593) by Pixiv@Yaduo铮粽子
 
