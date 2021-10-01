@@ -1,0 +1,36 @@
+<html lang="zh-cn">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <title>My Web Comic Reader</title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <div class="lp">0 / 0</div>
+    </div>
+
+    <!-- display comic here -->
+    <div class="comicreader" style="display: none;">
+        <div class="content"></div>
+        <div class="progressbar"></div>
+        <div class="to-top" style="display: none;">
+            <img src="assets/img/fa/chevron-up.svg">
+        </div>
+        <div class="close" style="display: none;">
+            <img src="assets/img/fa/times.svg">
+        </div>
+    </div>
+
+    <!-- upload button -->
+    <div class="loadbtn">
+        <span>上传压缩包文件</span>
+    </div>
+    <input type="file" accept="application/x-zip-compressed" id="upload" style="display: none;"/>
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jszip.min.js?version=3.7.1"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
