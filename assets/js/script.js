@@ -138,7 +138,7 @@ function clearBlobs() {
 
 // scroll to top
 $(window).scroll(function(){
-    if($(window).scrollTop() > 80) {
+    if($(window).scrollTop() > 100) {
         $(".to-top").show();
     }
     else {
@@ -162,8 +162,9 @@ $(document).scroll(function(){
     var percent = (st + cr) / to;
 
     if(percent > 1) percent = 1;
-    var wid = percent * 54;
-    $('.progressbar').attr('style', 'width: ' + wid + 'rem;');
+    var cw = $('.comicreader').width();
+    var w = percent * cw;
+    $('.progressbar').attr('style', 'width: ' + w + 'px;');
 })
 
 

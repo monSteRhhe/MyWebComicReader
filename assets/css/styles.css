@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
 html,
 body {
     margin: 0;
@@ -10,6 +16,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -ms-text-size-adjust: 100%;
 }
 
 .loading {
@@ -94,13 +103,6 @@ body {
     border: #d2d3cc 1px solid;
 }
 
-.to-top > img {
-    position: relative;
-    width: 5rem;
-    height: 2rem;
-    margin: 0 auto;
-}
-
 .close {
     z-index: 1;
     position: fixed;
@@ -111,8 +113,33 @@ body {
     border: #d2d3cc 1px solid;
 }
 
+.to-top > img {
+    position: relative;
+    width: 5rem;
+    height: 2rem;
+    margin: 0 auto;
+}
+
 .close > img {
     position: relative;
     width: 5rem;
     height: 2rem;
+}
+
+@media screen and (max-width: 38em) {
+    .comicreader img {
+        max-width: 100%;
+    }
+
+    .to-top {
+        right: 0;
+        margin: 0;
+        opacity: 0.7;
+    }
+    
+    .close {
+        right: 0;
+        margin: 0;
+        opacity: 0.7;
+    }
 }
