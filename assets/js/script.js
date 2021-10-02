@@ -159,12 +159,12 @@ var cr = $(window).height();
 $(document).scroll(function(){
     var st = $(window).scrollTop();
     var to = $(document.body).height();
-    var percent = (st + cr) / to;
 
-    if(percent > 1) percent = 1;
-    var cw = $('.comicreader').width();
-    var w = percent * cw;
-    $('.progressbar').attr('style', 'width: ' + w + 'px;');
+    var percent = (st + cr) / to;
+    if(percent > 1){percent = 1;}
+    percent = (percent * 100) + '%';
+
+    $('.progressbar').attr('style', 'width: ' + percent + ';');
 })
 
 
