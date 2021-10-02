@@ -23,6 +23,11 @@ $('.close').click(function(){
     $('.loadbtn').fadeIn();
 })
 
+function checkExt(fn) {
+    var ext = fn.split('.')[1];
+    if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'bmp' || ext == 'webp') return true;
+    else return false;
+}
 
 // open .zip comic file
 function OpenZip(file) {
@@ -32,7 +37,8 @@ function OpenZip(file) {
     // hide upload btn
     $('.loadbtn').hide();
 
-    // show loading
+    // init & show loading
+    $('.lp').html('0 / 0');
     $('.loading').fadeIn('slow');
 
     // background blud
@@ -46,20 +52,23 @@ function OpenZip(file) {
     cz.loadAsync(file)
     .then(function(zip) {
         // get max length
+        var zdict_keys = Object.keys(zip.files);
         var zdict_values = Object.values(zip.files);
         for(var i = 0; i < zdict_values.length; i++) {
             if(zdict_values[i].dir == false) {
-                max += 1;
+                if(checkExt(zdict_keys[i])) max += 1;
             }
         }
 
         zip.forEach(function(relativePath, zipEntry) {
             if(zipEntry.dir == false) {
-                var entry = zipEntry;
-                entries.push(entry);
+                if(checkExt(zipEntry.name)) {
+                    var entry = zipEntry;
+                    entries.push(entry);
 
-                if(entries.length == max) {
-                    procEntries(entries, 0, max);
+                    if(entries.length == max) {
+                        procEntries(entries, 0, max);
+                    }
                 }
             }
         })
