@@ -41,8 +41,8 @@ function OpenZip(file) {
     $('.lp').html('0 / 0');
     $('.loading').fadeIn('slow');
 
-    // background blud
-    $(document.body).css('backdrop-filter: blur(5px);');
+    // background blur
+    $('.filter-blur').show();
 
     var max = 0;
     var entries = new Array();
@@ -126,7 +126,7 @@ function createBlobs(entries, ei, max) {
         $('.content').append('<img class="cimg" src="' + url + '"/>');
 
         if(ei == max - 1){
-            //$('.loading').fadeOut('slow');
+            $('.filter-blur').hide();
             $('.loading').hide();
             $('.comicreader').fadeIn('slow');
             $('.close').fadeIn('slow');
