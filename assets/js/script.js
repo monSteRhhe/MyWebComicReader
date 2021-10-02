@@ -18,6 +18,7 @@ $('#upload').change(function () {
 // close reader
 $('.close').click(function(){
     $('.comicreader').fadeOut();
+    $('.progressbar').fadeOut();
     $('.content').empty();
     $('.loadbtn').fadeIn();
 })
