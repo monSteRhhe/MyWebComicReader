@@ -4,8 +4,7 @@ $('.loadbtn').click(function(){
     $('#upload').trigger('click');
 })
 
-
-// open comic from computer
+// open .zip comic from computer
 $('#upload').change(function () {
     var file = $(this)[0].files[0];
     OpenZip(file);
@@ -13,7 +12,6 @@ $('#upload').change(function () {
     // clear input value
     $('#upload').val('');
 });
-
 
 // close reader
 $('.close').click(function(){
