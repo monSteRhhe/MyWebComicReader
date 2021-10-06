@@ -12,6 +12,8 @@
 
 功能比较简单，只能看zip压缩包的漫画，只要里面是漫画，套了几层 ~~buff~~ 文件夹都行。
 
+一些文件读取顺序会有点问题。
+
 [**DEMO**](https://monsterhhe.github.io/MyWebComicReader)
 
 
@@ -21,6 +23,8 @@
 - 简单
 - 仅zip
 - 进度条
+- 加载
+- 拖入框
 - 没了
 
 
