@@ -10,9 +10,10 @@
     <div class="filter-blur" style="display: none;"></div>
     <div class="loading" style="display: none;">
         <div class="spinner"></div>
-        <div class="lp">0 / 0</div>
+        <div class="ldpage">0 / 0</div>
     </div>
 
+    <!-- show reading progess -->
     <div class="progressbar"></div>
 
     <!-- display comic here -->
@@ -26,12 +27,18 @@
         </div>
     </div>
 
-    <!-- upload button -->
-    <div class="loadbtn">
-        <span>打开本地zip压缩包</span>
+    <!-- upload box -->
+    <div class="uploadbox" id="uploadbox">
+        <div class="icon">
+            <img src="assets/img/fa/upload.svg" alt="Upload"/>
+        </div>
+        <div class="desc">
+            <span>Click Here or Drop a .zip File Here to Upload</span>
+        </div>
     </div>
     <input type="file" accept="application/x-zip-compressed" id="upload" style="display: none;"/>
 
+    <!-- scripts -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/jszip.min.js?version=3.7.1"></script>
     <script src="assets/js/script.js"></script>

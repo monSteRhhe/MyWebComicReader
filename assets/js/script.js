@@ -1,13 +1,34 @@
 'use strict';
 
-$('.loadbtn').click(function(){
+// drop to upload zip file
+document.ondragover = function(e) {e.preventDefault();}
+
+document.ondrop = function(e) {e.preventDefault();}
+
+uploadbox.ondragover = function(e) {
+    e.preventDefault();
+    $('.uploadbox').css('background-color', '#000');
+}
+
+uploadbox.ondragleave = function(e) {
+    e.preventDefault();
+    $('.uploadbox').css('background-color', '');
+}
+
+uploadbox.ondrop = function(e) {
+    var zipfile = e.dataTransfer.files[0];
+    OpenZip(zipfile);
+}
+
+// click to upload zip file
+$('#uploadbox').click(function(){
     $('#upload').trigger('click');
 })
 
 // open .zip comic from computer
 $('#upload').change(function () {
-    var file = $(this)[0].files[0];
-    OpenZip(file);
+    var zipfile = $(this)[0].files[0];
+    OpenZip(zipfile);
 
     // clear input value
     $('#upload').val('');
@@ -18,7 +39,7 @@ $('.close').click(function(){
     $('.comicreader').fadeOut();
     $('.progressbar').fadeOut();
     $('.content').empty();
-    $('.loadbtn').fadeIn();
+    $('#uploadbox').fadeIn();
 })
 
 function checkExt(fn) {
@@ -33,10 +54,10 @@ function OpenZip(file) {
     clearBlobs();
 
     // hide upload btn
-    $('.loadbtn').hide();
+    $('#uploadbox').hide();
 
     // init & show loading
-    $('.lp').html('0 / 0');
+    $('.ldpage').html('0 / 0');
     $('.loading').fadeIn('slow');
 
     // background blur
@@ -130,7 +151,7 @@ function createBlobs(entries, ei, max) {
             $('.close').fadeIn('slow');
         }
         else {
-            $('.lp').html((ei + 1)  + ' / ' + max);
+            $('.ldpage').html((ei + 1)  + ' / ' + max);
             procEntries(entries, ei + 1, max)
         }
     })
