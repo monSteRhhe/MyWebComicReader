@@ -5,15 +5,7 @@ document.ondragover = function(e) {e.preventDefault();}
 
 document.ondrop = function(e) {e.preventDefault();}
 
-uploadbox.ondragover = function(e) {
-    e.preventDefault();
-    $('.uploadbox').css('background-color', '#000');
-}
-
-uploadbox.ondragleave = function(e) {
-    e.preventDefault();
-    $('.uploadbox').css('background-color', '');
-}
+uploadbox.ondragover = function(e) {e.preventDefault();}
 
 uploadbox.ondrop = function(e) {
     var zipfile = e.dataTransfer.files[0];
