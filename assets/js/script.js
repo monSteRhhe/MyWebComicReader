@@ -89,16 +89,27 @@ function OpenZip(file) {
 
 // sort entries by number
 function entriesSort(entries) {
-    for(var i = 0; i < entries.length - 1 - 1; i++) {
-        for(var j = 0; j < entries.length - 1 - i; j++) {
-            if(parseInt(entryNum(entries, j)) > parseInt(entryNum(entries, j + 1))) {
-                var tmp = entries[j];
-                entries[j] = entries[j + 1];
-                entries[j + 1] = tmp;
+    if(entries.length > 2) {
+        for(var i = 0; i < entries.length - 1 - 1; i++) {
+            for(var j = 0; j < entries.length - 1 - i; j++) {
+                if(parseInt(entryNum(entries, j)) > parseInt(entryNum(entries, j + 1))) {
+                    var tmp = entries[j];
+                    entries[j] = entries[j + 1];
+                    entries[j + 1] = tmp;
+                }
             }
+            if(i == entries.length - 3) procEntries(entries, 0, entries.length);
         }
-        if(i == entries.length - 3) procEntries(entries, 0, entries.length);
     }
+    else if(entries.length == 2) {
+        if(parseInt(entryNum(entries, 0)) > parseInt(entryNum(entries, 1))) {
+            var tmp = entries[0];
+            entries[0] = entries[1];
+            entries[1] = tmp;
+        }
+        procEntries(entries, 0, 2);
+    }
+    else procEntries(entries, 0, 1);
 }
 
 
