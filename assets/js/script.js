@@ -35,8 +35,7 @@ $('.close').click(function(){
 })
 
 function checkExt(fn) {
-    var fn_sp = fn.split('.');
-    var ext = fn_sp[fn_sp.length - 1];
+    var ext = fn.split('.').pop();
     if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'bmp' || ext == 'webp') return true;
     else return false;
 }
@@ -104,8 +103,7 @@ function entriesSort(entries) {
 
 
 function entryNum(entries, i) {
-    var fn_arr = entries[i].name.split('/');
-    var fn = fn_arr[fn_arr.length - 1];
+    var fn = entries[i].name.split('/').pop();
     var fn_num = fn.split('.')[0];
     return fn_num;
 }
