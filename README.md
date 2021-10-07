@@ -1,4 +1,6 @@
-# MyWebComicReader
+<center><img src="./docs/icon.jpg"/></center>
+
+# <center>MyWebComicReader</center>
 
 > A very simple web based .zip comic reader.
 >
