@@ -1,6 +1,6 @@
-<center><img src="./docs/icon.jpg"/></center>
+<div style="margin: auto;"><img src="./docs/icon.jpg"/></div>
 
-# <center>MyWebComicReader</center>
+# <div style="margin: auto;">MyWebComicReader</div>
 
 > A very simple web based .zip comic reader.
 >
