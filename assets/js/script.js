@@ -13,7 +13,7 @@ uploadbox.ondrop = function(e) {
 }
 
 // click to upload zip file
-$('#uploadbox').click(function(){
+$('.uploadbox').click(function(){
     $('#upload').trigger('click');
 })
 
@@ -31,7 +31,7 @@ $('.close').click(function(){
     $('.comicreader').fadeOut();
     $('.progressbar').fadeOut();
     $('.content').empty();
-    $('#uploadbox').fadeIn();
+    $('.uploadbox').fadeIn();
 })
 
 function checkExt(fn) {
@@ -46,7 +46,7 @@ function OpenZip(file) {
     clearBlobs();
 
     // hide upload btn
-    $('#uploadbox').hide();
+    $('.uploadbox').hide();
 
     // init & show loading
     $('.ldpage').html('0 / 0');
@@ -78,12 +78,35 @@ function OpenZip(file) {
                     entries.push(entry);
 
                     if(entries.length == max) {
-                        procEntries(entries, 0, max);
+                        entriesSort(entries);
                     }
                 }
             }
         })
     })
+}
+
+
+// sort entries by number
+function entriesSort(entries) {
+    for(var i = 0; i < entries.length - 1 - 1; i++) {
+        for(var j = 0; j < entries.length - 1 - i; j++) {
+            if(parseInt(entryNum(entries, j)) > parseInt(entryNum(entries, j + 1))) {
+                var tmp = entries[j];
+                entries[j] = entries[j + 1];
+                entries[j + 1] = tmp;
+            }
+        }
+        if(i == entries.length - 3) procEntries(entries, 0, entries.length);
+    }
+}
+
+
+function entryNum(entries, i) {
+    var fn_arr = entries[i].name.split('/');
+    var fn = fn_arr[fn_arr.length - 1];
+    var fn_num = fn.split('.')[0];
+    return fn_num;
 }
 
 
