@@ -14,6 +14,10 @@
 
 功能比较简单，只能看zip压缩包的漫画，只要里面是漫画，套了几层 ~~buff~~ 文件夹都行。
 
+本地可以通过 VS Code 安装 **Live Server** 扩展使用。
+
+
+
 [**DEMO**](https://monsterhhe.github.io/MyWebComicReader)
 
 ![serena](/docs/serena.gif)
