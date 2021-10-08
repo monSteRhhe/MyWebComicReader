@@ -35,7 +35,7 @@ $('.close').click(function(){
 })
 
 function checkExt(fn) {
-    var ext = fn.split('.').pop();
+    var ext = getExt(fn);
     if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'bmp' || ext == 'webp') return true;
     else return false;
 }
