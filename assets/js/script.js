@@ -220,6 +220,8 @@ $(document).scroll(function(){
     percent = (percent * 100) + '%';
 
     $('.progressbar').attr('style', 'width: ' + percent + ';');
+
+    if(st == 0) $('.progressbar').hide();
 })
 
 
