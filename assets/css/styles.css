@@ -111,7 +111,7 @@ body {
     position: relative;
     margin: 0 auto;
     max-width: 54rem;
-    background-color: #e8e8e8;
+    background-color: #202020;
     z-index: 2;
 }
 
@@ -119,6 +119,40 @@ body {
     position: relative;
     margin: 0 auto;
     max-width: 50rem;
+    text-align: center;
+    pointer-events: none;
+}
+
+.content > .pagenum {
+    width: 100%;
+    padding: 2px 0;
+    user-select: none;
+}
+
+.pagenum > .ll {
+    height: 1px;
+    width: 45%;
+    float: left;
+    top: 9px;
+    position: relative;
+    background-color: #848381;
+}
+
+.pagenum > .lr {
+    height: 1px;
+    width: 45%;
+    float: right;
+    top: 9px;
+    position: relative;
+    background-color: #848381;
+}
+
+.pagenum > span {
+    color: #ccc;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 3;
+    font-size: 16px;
 }
 
 .comicreader img {

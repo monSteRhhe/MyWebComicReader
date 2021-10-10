@@ -155,6 +155,7 @@ function procEntries(entries, ei, max) {
 
 
 function createBlobs(entries, ei, max) {
+    $('.content').append('<div class="pagenum"><div class="ll"></div><div class="lr"></div><span>' + (ei + 1) + '</span></div>');
     var entry = entries[ei];
     entry
     .async('arraybuffer')
