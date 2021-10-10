@@ -236,7 +236,8 @@ function sysTime() {
     var h = d.getHours();
     var m = d.getMinutes();
 
-    return h + ':' + m;
+    if(m <= 9) return h + ': 0' + m;
+    else return h + ': ' + m;
 }
 
 
@@ -246,7 +247,8 @@ function bjTime() {
     var h = d.getHours();
     var m = d.getMinutes();
 
-    return h + ':' + m;
+    if(m <= 9) return h + ': 0' + m;
+    else return h + ': ' + m;
 }
 
 
