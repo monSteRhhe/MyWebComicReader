@@ -32,6 +32,7 @@ $('.close').click(function(){
     $('.progressbar').fadeOut();
     $('.content').empty();
     $('.uploadbox').fadeIn();
+    $('.pagenum').fadeOut();
 })
 
 function checkExt(fn) {
@@ -155,7 +156,7 @@ function procEntries(entries, ei, max) {
 
 
 function createBlobs(entries, ei, max) {
-    $('.content').append('<div class="pagenum"><div class="ll"></div><div class="lr"></div><span>' + (ei + 1) + '</span></div>');
+    $('.content').append('<div class="cp"><div class="ll"></div><div class="lr"></div><span>' + (ei + 1) + '</span></div>');
     var entry = entries[ei];
     entry
     .async('arraybuffer')
@@ -175,6 +176,10 @@ function createBlobs(entries, ei, max) {
             $('.loading').hide();
             $('.comicreader').fadeIn('slow');
             $('.close').fadeIn('slow');
+
+            $('.pagenum').html(max + 'P');
+
+            $('.pagenum').fadeIn();
         }
         else {
             $('.ldpage').html((ei + 1)  + ' / ' + max);
@@ -225,4 +230,29 @@ $(document).scroll(function(){
 })
 
 
+// get system time
+function sysTime() {
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
 
+    return h + ':' + m;
+}
+
+
+// get Beijing time
+function bjTime() {
+    var d = new Date(new Date().getTime()+(parseInt(new Date().getTimezoneOffset() / 60) + 8) * 3600 * 1000);
+    var h = d.getHours();
+    var m = d.getMinutes();
+
+    return h + ':' + m;
+}
+
+
+// display time
+setInterval(function(){
+    // var t = sysTime();
+    var t = bjTime();
+    $('.time').html(t);
+}, 1000)

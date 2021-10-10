@@ -31,6 +31,7 @@ body {
     height: 100%;
     position: absolute;
     backdrop-filter: blur(5px);
+    display: none;
 }
 
 .loading {
@@ -38,6 +39,7 @@ body {
     position: relative;
     margin: 0 auto;
     top: 45%;
+    display: none;
 }
 
 .loading > .spinner {
@@ -47,15 +49,6 @@ body {
     height: 40px;
     animation: spinner-rotate 2s infinite linear;
     -webkit-animation: spinner-rotate 2s infinite linear;
-}
-
-@keyframes spinner-rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }
 
 .loading > .ldpage {
@@ -113,6 +106,7 @@ body {
     max-width: 54rem;
     background-color: #202020;
     z-index: 2;
+    display: none;
 }
 
 .comicreader > .content {
@@ -123,13 +117,13 @@ body {
     pointer-events: none;
 }
 
-.content > .pagenum {
+.content > .cp {
     width: 100%;
     padding: 2px 0;
     user-select: none;
 }
 
-.pagenum > .ll {
+.cp > .ll {
     height: 1px;
     width: 45%;
     float: left;
@@ -138,7 +132,7 @@ body {
     background-color: #848381;
 }
 
-.pagenum > .lr {
+.cp > .lr {
     height: 1px;
     width: 45%;
     float: right;
@@ -147,7 +141,7 @@ body {
     background-color: #848381;
 }
 
-.pagenum > span {
+.cp > span {
     color: #ccc;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -167,6 +161,7 @@ body {
     bottom: 5rem;
     margin: 0 0 0 53rem;
     border: #d2d3cc 1px solid;
+    display: none;
 }
 
 .close {
@@ -177,6 +172,7 @@ body {
     top: 5rem;
     margin: 0 0 0 53rem;
     border: #d2d3cc 1px solid;
+    display: none;
 }
 
 .to-top > img {
@@ -191,6 +187,23 @@ body {
     width: 5rem;
     height: 2rem;
 }
+
+.info {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: fit-content;
+    color: #ccc;
+    background-color: #202020;
+    opacity: 0.8;
+    z-index: 5;
+    padding: 0 5px;
+}
+
+.info > .pagenum {
+    margin-left: 3px;
+}
+
 
 @media screen and (max-width: 980px) {
     html {
@@ -211,5 +224,14 @@ body {
         right: 0;
         margin: 0;
         opacity: 0.7;
+    }
+}
+
+@keyframes spinner-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

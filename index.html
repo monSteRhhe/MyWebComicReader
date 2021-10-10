@@ -7,8 +7,8 @@
 </head>
 <body>
     <!-- loading progess -->
-    <div class="filter-blur" style="display: none;"></div>
-    <div class="loading" style="display: none;">
+    <div class="filter-blur"></div>
+    <div class="loading">
         <div class="spinner"></div>
         <div class="ldpage">0 / 0</div>
     </div>
@@ -17,12 +17,12 @@
     <div class="progressbar"></div>
 
     <!-- display comic here -->
-    <div class="comicreader" style="display: none;">
+    <div class="comicreader">
         <div class="content"></div>
-        <div class="to-top" style="display: none;">
+        <div class="to-top">
             <img src="assets/img/fa/chevron-up.svg">
         </div>
-        <div class="close" style="display: none;">
+        <div class="close">
             <img src="assets/img/fa/times.svg">
         </div>
     </div>
@@ -37,6 +37,12 @@
         </div>
     </div>
     <input type="file" accept="application/x-zip-compressed" id="upload" style="display: none;"/>
+
+    <!-- info -->
+    <div class="info">
+        <span class="time"></span>
+        <span class="pagenum"></span>
+    </div>
 
     <!-- scripts -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
