@@ -25,6 +25,21 @@ body {
     -ms-text-size-adjust: 100%;
 }
 
+.mygh {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    opacity: .5;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: .1s opacity;
+}
+
+.mygh:hover {
+    opacity: .8;
+}
+
 .filter-blur {
     z-index: 0;
     width: 100%;
