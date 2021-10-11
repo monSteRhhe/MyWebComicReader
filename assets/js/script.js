@@ -10,12 +10,15 @@ uploadbox.ondragover = function(e) {e.preventDefault();}
 uploadbox.ondrop = function(e) {
     var zipfile = e.dataTransfer.files[0];
     OpenZip(zipfile);
+
 }
+
 
 // click to upload zip file
 $('.uploadbox').click(function(){
     $('#upload').trigger('click');
 })
+
 
 // open .zip comic from computer
 $('#upload').change(function () {
@@ -26,6 +29,7 @@ $('#upload').change(function () {
     $('#upload').val('');
 });
 
+
 // close reader
 $('.close').click(function(){
     $('.comicreader').fadeOut();
@@ -33,13 +37,19 @@ $('.close').click(function(){
     $('.content').empty();
     $('.uploadbox').fadeIn();
     $('.pagenum').fadeOut();
+
+    $('.toolbox').css('transform', 'translateY(6rem)');
+    $('.toolbox').fadeOut();
+    $('.toggle').html('<img src="assets/img/fa/toggle-on.svg">');
 })
+
 
 function checkExt(fn) {
     var ext = getExt(fn);
     if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'bmp' || ext == 'webp') return true;
     else return false;
 }
+
 
 // open .zip comic file
 function OpenZip(file) {
@@ -171,18 +181,35 @@ function createBlobs(entries, ei, max) {
         // output the imgs
         $('.content').append('<img class="cimg" src="' + url + '"/>');
 
+        // show comic loading status in bottom right
+        $('.status').fadeIn();
+
+        // show reader when 10 pics are loaded
+        if(max >= 10 && ei == 10){
+            $('.loading').hide();
+            $('.comicreader').fadeIn();
+            $('.close').fadeIn();
+        }
+
+
         if(ei == max - 1){
+            $('.loading').hide();
             $('.filter-blur').hide();
             $('.loading').hide();
-            $('.comicreader').fadeIn('slow');
-            $('.close').fadeIn('slow');
+            $('.comicreader').fadeIn();
+            $('.close').fadeIn();
+
+            $('.ldpage').html((ei + 1)  + ' / ' + max);
+            $('.loaded').html((ei + 1)  + ' / ' + max);
+
+            $('.status').fadeOut();
 
             $('.pagenum').html(max + 'P');
-
             $('.pagenum').fadeIn();
         }
         else {
             $('.ldpage').html((ei + 1)  + ' / ' + max);
+            $('.loaded').html((ei + 1)  + ' / ' + max);
             procEntries(entries, ei + 1, max)
         }
     })
@@ -197,15 +224,6 @@ function clearBlobs() {
 
 
 // scroll to top
-$(window).scroll(function(){
-    if($(window).scrollTop() > 100) {
-        $(".to-top").show();
-    }
-    else {
-        $(".to-top").hide();
-    }
-})
-
 $('.to-top').click(function(){
     $('body,html').animate({
         scrollTop: 0
@@ -258,3 +276,34 @@ setInterval(function(){
     var t = bjTime();
     $('.time').html(t);
 }, 1000)
+
+
+// click to show toolbox
+$('.content').click(function(){
+    if($('.toolbox').css('display') == 'none'){
+        $('.toolbox').fadeIn();
+        $('.toolbox').css('transform', 'translateY(0)');
+    }
+    else {
+        $('.toolbox').css('transform', 'translateY(6rem)');
+        $('.toolbox').fadeOut();
+    }
+})
+
+
+// toggle hide/show of page number
+$('.toggle').click(function(){
+    var ct = $('.toggle').html();
+    var ct = $.trim(ct);
+    var ton = '<img src="assets/img/fa/toggle-on.svg">';
+    var toff = '<img src="assets/img/fa/toggle-off.svg">';
+    if(ct == ton) {
+        $('.toggle').html(toff);
+        $('.cp').hide();
+    }
+    else {
+        $('.toggle').html(ton);
+        $('.cp').show();
+    }
+})
+
