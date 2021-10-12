@@ -41,6 +41,9 @@ $('.close').click(function(){
     $('.toolbox').css('transform', 'translateY(6rem)');
     $('.toolbox').fadeOut();
     $('.toggle').html('<img src="assets/img/fa/toggle-on.svg">');
+
+    $('.header').css('transform', 'translateY(-6rem)');
+    $('.header').fadeOut();
 })
 
 
@@ -65,6 +68,11 @@ function OpenZip(file) {
 
     // background blur
     $('.filter-blur').show();
+
+    // title
+    var fne = file.name;
+    var fn = fne.substring(0, fne.lastIndexOf("."));
+    $('.title').html(fn)
 
     var max = 0;
     var entries = new Array();
@@ -200,7 +208,7 @@ function createBlobs(entries, ei, max) {
             $('.close').fadeIn();
 
             $('.ldpage').html((ei + 1)  + ' / ' + max);
-            $('.loaded').html((ei + 1)  + ' / ' + max);
+            $('.load').html((ei + 1)  + ' / ' + max);
 
             $('.status').fadeOut();
 
@@ -209,7 +217,7 @@ function createBlobs(entries, ei, max) {
         }
         else {
             $('.ldpage').html((ei + 1)  + ' / ' + max);
-            $('.loaded').html((ei + 1)  + ' / ' + max);
+            $('.load').html((ei + 1)  + ' / ' + max);
             procEntries(entries, ei + 1, max)
         }
     })
@@ -272,21 +280,27 @@ function bjTime() {
 
 // display time
 setInterval(function(){
-    // var t = sysTime();
+    //var t = sysTime();
     var t = bjTime();
     $('.time').html(t);
 }, 1000)
 
 
-// click to show toolbox
+// click to show widgets
 $('.content').click(function(){
     if($('.toolbox').css('display') == 'none'){
         $('.toolbox').fadeIn();
         $('.toolbox').css('transform', 'translateY(0)');
+
+        $('.header').fadeIn();
+        $('.header').css('transform', 'translateY(0)');
     }
     else {
         $('.toolbox').css('transform', 'translateY(6rem)');
         $('.toolbox').fadeOut();
+
+        $('.header').css('transform', 'translateY(-6rem)');
+        $('.header').fadeOut();
     }
 })
 

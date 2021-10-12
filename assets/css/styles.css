@@ -99,7 +99,7 @@ body {
     pointer-events: none;
 }
 
-.uploadbox > .desc {
+.uploadbox > .tip {
     opacity: .7;
     margin-bottom: 1.5rem;
     font-weight: bold;
@@ -171,6 +171,30 @@ body {
     width: 50rem;
 }
 
+.header {
+    position: fixed;
+    opacity: .7;
+    margin: auto;
+    max-width: 50rem;
+    height: 4rem;
+    top: 0;
+    left:0;
+    right:0;
+    z-index: 4;
+    border-bottom: #848381 2px solid;
+    background-color: #2b2b2b;
+    transform: translateY(-6rem);
+    transition: transform .2s;
+    display: none;
+    padding: 1rem .5rem;
+}
+
+.header > .title {
+    color: #ccc;
+    word-break: break-all;
+    overflow: hidden;
+}
+
 .toolbox {
     position: fixed;
     opacity: .7;
@@ -213,7 +237,7 @@ body {
     padding: 0 5px;
 }
 
-.info > .pagenum {
+.info > .pnum {
     margin-left: 3px;
 }
 
@@ -230,7 +254,7 @@ body {
     display: none;
 }
 
-.status > .notice {
+.status > .st {
     display: block;
 }
 
