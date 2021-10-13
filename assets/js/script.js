@@ -36,7 +36,7 @@ $('.close').click(function(){
     $('.progressbar').fadeOut();
     $('.content').empty();
     $('.uploadbox').fadeIn();
-    $('.pagenum').fadeOut();
+    $('.pnum').fadeOut();
 
     $('.toolbox').css('transform', 'translateY(6rem)');
     $('.toolbox').fadeOut();
@@ -63,7 +63,7 @@ function OpenZip(file) {
     $('.uploadbox').hide();
 
     // init & show loading
-    $('.ldpage').html('0 / 0');
+    $('.ld').html('0 / 0');
     $('.loading').fadeIn('slow');
 
     // background blur
@@ -207,16 +207,16 @@ function createBlobs(entries, ei, max) {
             $('.comicreader').fadeIn();
             $('.close').fadeIn();
 
-            $('.ldpage').html((ei + 1)  + ' / ' + max);
+            $('.ld').html((ei + 1)  + ' / ' + max);
             $('.load').html((ei + 1)  + ' / ' + max);
 
             $('.status').fadeOut();
 
-            $('.pagenum').html(max + 'P');
-            $('.pagenum').fadeIn();
+            $('.pnum').html(max + 'P');
+            $('.pnum').fadeIn();
         }
         else {
-            $('.ldpage').html((ei + 1)  + ' / ' + max);
+            $('.ld').html((ei + 1)  + ' / ' + max);
             $('.load').html((ei + 1)  + ' / ' + max);
             procEntries(entries, ei + 1, max)
         }

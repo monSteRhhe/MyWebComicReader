@@ -25,7 +25,7 @@ body {
     -ms-text-size-adjust: 100%;
 }
 
-.mygh {
+.gh {
     position: absolute;
     top: 3px;
     right: 3px;
@@ -34,9 +34,10 @@ body {
     width: 1.5rem;
     height: 1.5rem;
     transition: .1s opacity;
+    -webkit-transition: .1s opacity;
 }
 
-.mygh:hover {
+.gh:hover {
     opacity: .8;
 }
 
@@ -66,7 +67,7 @@ body {
     -webkit-animation: spinner-rotate 2s infinite linear;
 }
 
-.loading > .ldpage {
+.loading > .ld {
     width: fit-content;
     margin: 1rem auto;
     color: #f5f5f5;
@@ -229,7 +230,6 @@ body {
     position: fixed;
     left: 0;
     bottom: 0;
-    height: fit-content;
     color: #ccc;
     background-color: #202020;
     opacity: .8;
@@ -245,7 +245,6 @@ body {
     position: fixed;
     right: 0;
     bottom: 0;
-    height: fit-content;
     color: #ccc;
     background-color: #202020;
     opacity: .8;
