@@ -193,13 +193,13 @@ function createBlobs(entries, ei, max) {
         // show reader when 10 pics are loaded
         if(max >= 10 && ei == 10){
             $('.loading').hide();
-            $('.comicreader, .close').fadeIn();
+            $('.comicreader').fadeIn();
         }
 
 
         if(ei == max - 1){
             $('.loading, .filter-blur').hide();
-            $('.comicreader, .close').fadeIn();
+            $('.comicreader').fadeIn();
 
             $('.ld').html((ei + 1)  + ' / ' + max);
             $('.load').html((ei + 1)  + ' / ' + max);
