@@ -31,16 +31,14 @@ $('#upload').change(function () {
 
 // close reader
 $('.close').click(function() {
-    $('.comicreader, .progressbar').fadeOut();
-    $('.content').empty();
-    $('.uploadbox').fadeIn();
-
     $('.toolbox').css('transform', 'translateY(6rem)');
-    $('.toolbox').fadeOut();
-    $('.toggle').html('<img src="assets/img/fa/toggle-on.svg">');
+    $('.titlebox').css('transform', 'translateY(-6rem)');
 
-    $('.header').css('transform', 'translateY(-6rem)');
-    $('.header').fadeOut();
+    $('.uploadbox').fadeIn();
+    $('.toolbox, .titlebox, .comicreader, .progressbar').fadeOut();
+
+    $('.toggle').html('<img src="assets/img/fa/toggle-on.svg">');
+    $('.totalpage').empty();
 })
 
 
@@ -51,33 +49,26 @@ function checkExt(fn) {
 }
 
 
-function entryKey(en) {
-    var fn = en.split('/').pop();
-    var fn_num = fn.split('.')[0];
-    return fn_num;
-}
-
-
 // open .zip comic file
 function OpenZip(file) {
     // clear previous blobs
     clearBlobs();
+    $('.content').empty();
 
     // hide upload btn
     $('.uploadbox').hide();
 
     // init & show loading
-    $('.ld').html('0 / 0');
+    $('.loads').html('0 / 0');
     $('.loading').fadeIn('slow');
 
-    // title
+    // zipfile name as title
     var fne = file.name;
     var fn = fne.substring(0, fne.lastIndexOf("."));
     $('.title').html(fn)
 
     var max = 0;
-    var count = new Array();
-    var entryDic = {};
+    var entryDict = {};
 
     var cz = new JSZip();
     // read the blob
@@ -94,17 +85,7 @@ function OpenZip(file) {
         zip.forEach(function(relativePath, zipEntry) {
             if(zipEntry.dir == false) {
                 if(checkExt(zipEntry.name)) {
-                    var entry = zipEntry;
-                    count.push(entry);
-
-                    // use Object to sort entires
-                    var key = entryKey(zipEntry.name);
-                    entryDic[key] = entry;
-
-                    if(count.length == max) {
-                        var entries = Object.values(entryDic);
-                        procEntries(entries, 0, max);
-                    }
+                    createBlobs(zipEntry, entryDict, max);
                 }
             }
         })
@@ -135,20 +116,12 @@ function getMIME(fn) {
 
 function getExt(fn) {
     var ext = fn.split('.').pop();
-    if(ext == fn) return '';
-    else return ext;
+    if(ext != fn) return ext;
+    else return '';
 }
 
 
-function procEntries(entries, ei, max) {
-    var fn = entries[ei].name;
-    if(fn != '') createBlobs(entries, ei, max);
-}
-
-
-function createBlobs(entries, ei, max) {
-    $('.content').append('<div class="cp"><div class="ll"></div><div class="lr"></div><span>' + (ei + 1) + '</span></div>');
-    var entry = entries[ei];
+function createBlobs(entry, entryDict, max) {
     entry
     .async('arraybuffer')
     .then(function(ab) {
@@ -159,38 +132,48 @@ function createBlobs(entries, ei, max) {
         var blob = new Blob([data], {type: getMIME(entry.name)});
         var url = URL.createObjectURL(blob);
 
-        // output the imgs
-        $('.content').append('<img class="cimg" src="' + url + '"/>');
 
-        // show comic loading status in bottom right
-        $('.status').fadeIn();
+        var en = entry.name;
+        var fn = en.split('/').pop();
+        var key = fn.split('.')[0];
 
-        // show reader when 10 pics are loaded
-        if(max >= 10 && ei == 10) {
-            $('.loading').hide();
-            $('.comicreader').fadeIn();
-        }
+        entryDict[key] = url;
 
-        if(ei == max - 1) {
-            $('.loading').hide();
-            $('.comicreader').fadeIn();
+        var keyArr = Object.keys(entryDict);
+        var len = keyArr.length;
 
-            $('.ld').html((ei + 1)  + ' / ' + max);
-            $('.load').html((ei + 1)  + ' / ' + max);
 
-            $('.status').fadeOut();
+        $('.totalpage').html(max + 'P');
+        $('.loads').html(len  + ' / ' + max);
 
-            $('.pnum').html(max + 'P');
-            $('.pnum').fadeIn();
-        }
-        else {
-            $('.ld').html((ei + 1)  + ' / ' + max);
-            $('.load').html((ei + 1)  + ' / ' + max);
-            procEntries(entries, ei + 1, max)
+        if(len == max) {
+            var sortedDict = {};
+            keyArr.sort();
+
+            for(var i = 0; i < keyArr.length; i++) {
+                var k = keyArr[i];
+                sortedDict[k] = entryDict[k];
+                if(i == keyArr.length - 1) openReader(sortedDict, 0);
+            }
         }
     })
 }
 
+
+function openReader(dict, index) {
+    var key = Object.keys(dict);
+
+    $('.content').append('<div class="cp"><div class="ll"></div><div class="lr"></div><span>' + (index + 1) + '</span></div>');
+    $('.content').append('<img class="cimg" src="' + dict[key[index]] + '"/>');
+
+    if(index != key.length - 1) {
+        openReader(dict, index + 1);
+    }
+    else {
+        $('.loading').hide();
+        $('.comicreader, .totalpage').fadeIn();
+    }
+}
 
 // clear Blobs
 function clearBlobs() {
@@ -258,18 +241,12 @@ setInterval(function() {
 // click to show widgets
 $('.content').click(function() {
     if($('.toolbox').css('display') == 'none') {
-        $('.toolbox').fadeIn();
-        $('.toolbox').css('transform', 'translateY(0)');
-
-        $('.header').fadeIn();
-        $('.header').css('transform', 'translateY(0)');
+        $('.toolbox, .titlebox').fadeIn();
+        $('.toolbox, .titlebox').css('transform', 'translateY(0)');
     }
     else {
-        $('.toolbox').css('transform', 'translateY(6rem)');
-        $('.toolbox').fadeOut();
-
-        $('.header').css('transform', 'translateY(-6rem)');
-        $('.header').fadeOut();
+        $('.toolbox, .titlebox').css('transform', 'translateY(6rem)');
+        $('.toolbox, .titlebox').fadeOut();
     }
 })
 

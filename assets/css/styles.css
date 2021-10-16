@@ -58,7 +58,7 @@ body {
     -webkit-animation: spinner-rotate 2s infinite linear;
 }
 
-.loading > .ld {
+.loading > .loads {
     width: fit-content;
     margin: 1rem auto;
     color: #f5f5f5;
@@ -163,7 +163,7 @@ body {
     width: 50rem;
 }
 
-.header {
+.titlebox {
     position: fixed;
     opacity: .7;
     margin: auto;
@@ -181,7 +181,7 @@ body {
     padding: 1rem .5rem;
 }
 
-.header > .title {
+.titlebox > .title {
     color: #ccc;
     word-break: break-all;
     overflow: hidden;
@@ -226,26 +226,11 @@ body {
     opacity: .8;
     z-index: 4;
     padding: 0 5px;
+    user-select: none;
 }
 
-.info > .pnum {
+.info > .totalpage {
     margin-left: 3px;
-}
-
-.status {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    color: #ccc;
-    background-color: #202020;
-    opacity: .8;
-    z-index: 4;
-    padding: 0 5px;
-    display: none;
-}
-
-.status > .st {
-    display: block;
 }
 
 
