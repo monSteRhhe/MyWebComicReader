@@ -149,10 +149,15 @@ function createBlobs(entry, entryDict, max) {
         if(len == max) {
             var sortedDict = {};
             keyArr.sort();
+            keyArr.sort(function(a, b) {
+                return a - b;
+            });
+            //console.log(keyArr);
 
             for(var i = 0; i < keyArr.length; i++) {
                 var k = keyArr[i];
-                sortedDict[k] = entryDict[k];
+                //console.log(k);
+                sortedDict[i] = entryDict[k];
                 if(i == keyArr.length - 1) openReader(sortedDict, 0);
             }
         }
@@ -245,8 +250,11 @@ $('.content').click(function() {
         $('.toolbox, .titlebox').css('transform', 'translateY(0)');
     }
     else {
-        $('.toolbox, .titlebox').css('transform', 'translateY(6rem)');
-        $('.toolbox, .titlebox').fadeOut();
+        $('.toolbox').css('transform', 'translateY(6rem)');
+        $('.toolbox').fadeOut();
+
+        $('.titlebox').css('transform', 'translateY(-6rem)');
+        $('.titlebox').fadeOut();
     }
 })
 
