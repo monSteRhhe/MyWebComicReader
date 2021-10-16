@@ -31,7 +31,7 @@ $('#upload').change(function () {
 
 // close reader
 $('.close').click(function() {
-    $('.comicreader, .progressbar, .pnum').fadeOut();
+    $('.comicreader, .progressbar').fadeOut();
     $('.content').empty();
     $('.uploadbox').fadeIn();
 
@@ -48,6 +48,13 @@ function checkExt(fn) {
     var ext = getExt(fn);
     if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'bmp' || ext == 'webp') return true;
     else return false;
+}
+
+
+function entryKey(en) {
+    var fn = en.split('/').pop();
+    var fn_num = fn.split('.')[0];
+    return fn_num;
 }
 
 
@@ -72,18 +79,18 @@ function OpenZip(file) {
     $('.title').html(fn)
 
     var max = 0;
-    var entries = new Array();
+    var count = new Array();
+    var entryDic = {};
 
     var cz = new JSZip();
     // read the blob
     cz.loadAsync(file)
     .then(function(zip) {
         // get max length
-        var zdict_keys = Object.keys(zip.files);
         var zdict_values = Object.values(zip.files);
         for(var i = 0; i < zdict_values.length; i++) {
             if(zdict_values[i].dir == false) {
-                if(checkExt(zdict_keys[i])) max += 1;
+                if(checkExt(zdict_values[i].name)) max += 1;
             }
         }
 
@@ -91,48 +98,20 @@ function OpenZip(file) {
             if(zipEntry.dir == false) {
                 if(checkExt(zipEntry.name)) {
                     var entry = zipEntry;
-                    entries.push(entry);
+                    count.push(entry);
 
-                    if(entries.length == max) {
-                        entriesSort(entries);
+                    // use Object to sort entires
+                    var key = entryKey(zipEntry.name);
+                    entryDic[key] = entry;
+
+                    if(count.length == max) {
+                        var entries = Object.values(entryDic);
+                        procEntries(entries, 0, max);
                     }
                 }
             }
         })
     })
-}
-
-
-// sort entries by number
-function entriesSort(entries) {
-    if(entries.length > 2) {
-        for(var i = 0; i < entries.length - 1 - 1; i++) {
-            for(var j = 0; j < entries.length - 1 - i; j++) {
-                if(parseInt(entryNum(entries, j)) > parseInt(entryNum(entries, j + 1))) {
-                    var tmp = entries[j];
-                    entries[j] = entries[j + 1];
-                    entries[j + 1] = tmp;
-                }
-            }
-            if(i == entries.length - 3) procEntries(entries, 0, entries.length);
-        }
-    }
-    else if(entries.length == 2) {
-        if(parseInt(entryNum(entries, 0)) > parseInt(entryNum(entries, 1))) {
-            var tmp = entries[0];
-            entries[0] = entries[1];
-            entries[1] = tmp;
-        }
-        procEntries(entries, 0, 2);
-    }
-    else procEntries(entries, 0, 1);
-}
-
-
-function entryNum(entries, i) {
-    var fn = entries[i].name.split('/').pop();
-    var fn_num = fn.split('.')[0];
-    return fn_num;
 }
 
 
@@ -195,7 +174,6 @@ function createBlobs(entries, ei, max) {
             $('.comicreader').fadeIn();
         }
 
-
         if(ei == max - 1) {
             $('.loading, .filter-blur').hide();
             $('.comicreader').fadeIn();
@@ -217,6 +195,7 @@ function createBlobs(entries, ei, max) {
 }
 
 
+// clear Blobs
 function clearBlobs() {
     $('.cimg').each(function() {
         URL.revokeObjectURL($(this).attr('src'));
