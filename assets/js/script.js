@@ -70,9 +70,6 @@ function OpenZip(file) {
     $('.ld').html('0 / 0');
     $('.loading').fadeIn('slow');
 
-    // background blur
-    $('.filter-blur').show();
-
     // title
     var fne = file.name;
     var fn = fne.substring(0, fne.lastIndexOf("."));
@@ -175,7 +172,7 @@ function createBlobs(entries, ei, max) {
         }
 
         if(ei == max - 1) {
-            $('.loading, .filter-blur').hide();
+            $('.loading').hide();
             $('.comicreader').fadeIn();
 
             $('.ld').html((ei + 1)  + ' / ' + max);
