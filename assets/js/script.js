@@ -10,12 +10,11 @@ uploadbox.ondragover = function(e) {e.preventDefault();}
 uploadbox.ondrop = function(e) {
     var zipfile = e.dataTransfer.files[0];
     OpenZip(zipfile);
-
 }
 
 
 // click to upload zip file
-$('.uploadbox').click(function(){
+$('.uploadbox').click(function() {
     $('#upload').trigger('click');
 })
 
@@ -31,7 +30,7 @@ $('#upload').change(function () {
 
 
 // close reader
-$('.close').click(function(){
+$('.close').click(function() {
     $('.comicreader, .progressbar, .pnum').fadeOut();
     $('.content').empty();
     $('.uploadbox').fadeIn();
@@ -191,13 +190,13 @@ function createBlobs(entries, ei, max) {
         $('.status').fadeIn();
 
         // show reader when 10 pics are loaded
-        if(max >= 10 && ei == 10){
+        if(max >= 10 && ei == 10) {
             $('.loading').hide();
             $('.comicreader').fadeIn();
         }
 
 
-        if(ei == max - 1){
+        if(ei == max - 1) {
             $('.loading, .filter-blur').hide();
             $('.comicreader').fadeIn();
 
@@ -219,14 +218,14 @@ function createBlobs(entries, ei, max) {
 
 
 function clearBlobs() {
-    $('.cimg').each(function(){
+    $('.cimg').each(function() {
         URL.revokeObjectURL($(this).attr('src'));
     });
 }
 
 
 // scroll to top
-$('.to-top').click(function(){
+$('.to-top').click(function() {
     $('body,html').animate({
         scrollTop: 0
     }, 300)
@@ -236,12 +235,12 @@ $('.to-top').click(function(){
 // progress bar
 var cr = $(window).height();
 
-$(document).scroll(function(){
+$(document).scroll(function() {
     var st = $(window).scrollTop();
     var to = $(document.body).height();
 
     var percent = (st + cr) / to;
-    if(percent > 1){percent = 1;}
+    if(percent > 1) {percent = 1;}
     percent = (percent * 100) + '%';
 
     $('.progressbar').attr('style', 'width: ' + percent + ';');
@@ -273,7 +272,7 @@ function bjTime() {
 
 
 // display time
-setInterval(function(){
+setInterval(function() {
     //var t = sysTime();
     var t = bjTime();
     $('.time').html(t);
@@ -281,8 +280,8 @@ setInterval(function(){
 
 
 // click to show widgets
-$('.content').click(function(){
-    if($('.toolbox').css('display') == 'none'){
+$('.content').click(function() {
+    if($('.toolbox').css('display') == 'none') {
         $('.toolbox').fadeIn();
         $('.toolbox').css('transform', 'translateY(0)');
 
@@ -300,7 +299,7 @@ $('.content').click(function(){
 
 
 // toggle hide/show of page number
-$('.toggle').click(function(){
+$('.toggle').click(function() {
     var ct = $('.toggle').html();
     var ct = $.trim(ct);
     var ton = '<img src="assets/img/fa/toggle-on.svg">';
