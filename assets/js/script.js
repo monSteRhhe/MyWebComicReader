@@ -32,11 +32,9 @@ $('#upload').change(function () {
 
 // close reader
 $('.close').click(function(){
-    $('.comicreader').fadeOut();
-    $('.progressbar').fadeOut();
+    $('.comicreader, .progressbar, .pnum').fadeOut();
     $('.content').empty();
     $('.uploadbox').fadeIn();
-    $('.pnum').fadeOut();
 
     $('.toolbox').css('transform', 'translateY(6rem)');
     $('.toolbox').fadeOut();
@@ -195,17 +193,13 @@ function createBlobs(entries, ei, max) {
         // show reader when 10 pics are loaded
         if(max >= 10 && ei == 10){
             $('.loading').hide();
-            $('.comicreader').fadeIn();
-            $('.close').fadeIn();
+            $('.comicreader, .close').fadeIn();
         }
 
 
         if(ei == max - 1){
-            $('.loading').hide();
-            $('.filter-blur').hide();
-            $('.loading').hide();
-            $('.comicreader').fadeIn();
-            $('.close').fadeIn();
+            $('.loading, .filter-blur').hide();
+            $('.comicreader, .close').fadeIn();
 
             $('.ld').html((ei + 1)  + ' / ' + max);
             $('.load').html((ei + 1)  + ' / ' + max);
