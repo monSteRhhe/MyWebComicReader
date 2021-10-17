@@ -50,9 +50,11 @@
 
 - 阅读器点击显示/隐藏工具栏
 
-  工具栏：回顶部、关闭阅读器、开/关页码显示（默认显示页码）
+  工具栏：回顶部、关闭阅读器、开/关页码显示（默认显示页码）、自动向下滚动
   
 - 优化了加载速度
+
+- *能跑起来就算成功*
 
 - 没了
 
@@ -62,6 +64,7 @@
 
 - JSZip: [Stuk/jszip](https://github.com/Stuk/jszip)
 - jQuery: https://jquery.com/
+- FontAwesome: https://fa5.dashgame.com/
 
 ​    
 

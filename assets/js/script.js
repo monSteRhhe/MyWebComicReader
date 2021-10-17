@@ -39,6 +39,9 @@ $('.close').click(function() {
 
     $('.toggle').html('<img src="assets/img/fa/toggle-on.svg">');
     $('.totalpage').empty();
+
+    $('.autoscroll').html('<img src="assets/img/fa/play-circle.svg">');
+    clearInterval(window.scrollDown);
 })
 
 
@@ -224,6 +227,7 @@ function openReader(dict, index) {
 }
 
 
+// clear blobs
 function clearBlobs() {
     $('.cimg').each(function() {
         URL.revokeObjectURL($(this).attr('src'));
@@ -240,13 +244,13 @@ $('.to-top').click(function() {
 
 
 // progress bar
-var cr = $(window).height();
+var sh = $(window).height(); // visible screen height
 
 $(document).scroll(function() {
-    var st = $(window).scrollTop();
-    var to = $(document.body).height();
+    var st = $(window).scrollTop(); // scrolltop height
+    var to = $(document.body).height(); // body height
 
-    var percent = (st + cr) / to;
+    var percent = (st + sh) / to;
     if(percent > 1) {percent = 1;}
     percent = (percent * 100) + '%';
 
@@ -305,7 +309,7 @@ $('.content').click(function() {
 // toggle hide/show of page number
 $('.toggle').click(function() {
     var ct = $('.toggle').html();
-    var ct = $.trim(ct);
+    ct = $.trim(ct);
     var ton = '<img src="assets/img/fa/toggle-on.svg">';
     var toff = '<img src="assets/img/fa/toggle-off.svg">';
     if(ct == ton) {
@@ -315,6 +319,39 @@ $('.toggle').click(function() {
     else {
         $('.toggle').html(ton);
         $('.cp').show();
+    }
+})
+
+
+// auto scroll down
+var scrollDown = '';
+$('.autoscroll').click(function() {
+    var ct = $('.autoscroll').html();
+    ct = $.trim(ct);
+    
+    var toff = '<img src="assets/img/fa/play-circle.svg">';
+    var ton = '<img src="assets/img/fa/stop-circle.svg">';
+
+    var st = $(window).scrollTop();
+    var to = $(document.body).height();
+
+    if(ct == ton) {
+        $('.autoscroll').html(toff);
+        clearInterval(window.scrollDown);
+    }
+    else {
+        $('.autoscroll').html(ton);
+        if(sh + st < to) {
+            scrollDown = setInterval(function() {
+                var ch = $(window).scrollTop();
+                $(window).scrollTop(ch + 2);
+
+                if(sh + parseInt(ch.toFixed(0)) >= to) {
+                    clearInterval(scrollDown);
+                    $('.autoscroll').html(toff);
+                }
+            }, 10)
+        }
     }
 })
 
