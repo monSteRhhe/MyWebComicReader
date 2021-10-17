@@ -1,6 +1,6 @@
 'use strict';
 
-// drop to upload zip file
+// drop to upload
 document.ondragover = function(e) {e.preventDefault();}
 
 document.ondrop = function(e) {e.preventDefault();}
@@ -13,7 +13,7 @@ uploadbox.ondrop = function(e) {
 }
 
 
-// click to upload zip file
+// click to upload
 $('.uploadbox').click(function() {
     $('#upload').trigger('click');
 })
@@ -24,7 +24,7 @@ $('#upload').change(function () {
     var zipfile = $(this)[0].files[0];
     OpenZip(zipfile);
 
-    // clear input value
+    // clear input
     $('#upload').val('');
 });
 
@@ -93,6 +93,7 @@ function OpenZip(file) {
 }
 
 
+// get file's MIME type
 function getMIME(fn) {
     var ext = getExt(fn).toLowerCase();
 
@@ -148,17 +149,33 @@ function createBlobs(entry, entryDict, max) {
 
         if(len == max) {
             var sortedDict = {};
-            keyArr.sort();
-            keyArr.sort(function(a, b) {
-                return a - b;
-            });
-            //console.log(keyArr);
 
-            for(var i = 0; i < keyArr.length; i++) {
-                var k = keyArr[i];
-                //console.log(k);
-                sortedDict[i] = entryDict[k];
-                if(i == keyArr.length - 1) openReader(sortedDict, 0);
+            // sort keyArr
+            for(var i = 0; i < keyArr.length - 1 - 1; i++) {
+                for(var j = 0; j < keyArr.length - 1 - i; j++) {
+                    if(/[a-z]/i.test(keyArr[j]) || /[a-z]/i.test(keyArr[j + 1])) {
+                        if(keyArr[j] > keyArr[j + 1]) {
+                            var tmp = keyArr[j];
+                            keyArr[j] = keyArr[j + 1];
+                            keyArr[j + 1] = tmp;
+                        }
+                    }
+                    else {
+                        if(parseInt(keyArr[j]) > parseInt(keyArr[j + 1])) {
+                            var tmp = keyArr[j];
+                            keyArr[j] = keyArr[j + 1];
+                            keyArr[j + 1] = tmp;
+                        }
+                    }
+                }
+                if(i == keyArr.length - 3) {
+                    for(var i = 0; i < keyArr.length; i++) {
+                        var k = keyArr[i];
+
+                        sortedDict[i] = entryDict[k];
+                        if(i == keyArr.length - 1) openReader(sortedDict, 0);
+                    }
+                }
             }
         }
     })
@@ -180,7 +197,7 @@ function openReader(dict, index) {
     }
 }
 
-// clear Blobs
+
 function clearBlobs() {
     $('.cimg').each(function() {
         URL.revokeObjectURL($(this).attr('src'));
