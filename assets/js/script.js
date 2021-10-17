@@ -132,6 +132,7 @@ function createBlobs(entry, entryDict, max) {
         // convert the data into an object url
         var blob = new Blob([data], {type: getMIME(entry.name)});
         var url = URL.createObjectURL(blob);
+        //console.log(url);
 
 
         var en = entry.name;
@@ -151,31 +152,56 @@ function createBlobs(entry, entryDict, max) {
             var sortedDict = {};
 
             // sort keyArr
-            for(var i = 0; i < keyArr.length - 1 - 1; i++) {
-                for(var j = 0; j < keyArr.length - 1 - i; j++) {
-                    if(/[a-z]/i.test(keyArr[j]) || /[a-z]/i.test(keyArr[j + 1])) {
-                        if(keyArr[j] > keyArr[j + 1]) {
-                            var tmp = keyArr[j];
-                            keyArr[j] = keyArr[j + 1];
-                            keyArr[j + 1] = tmp;
+            if(keyArr.length >= 3) {
+                for(var i = 0; i < keyArr.length - 1 - 1; i++) {
+                    for(var j = 0; j < keyArr.length - 1 - i; j++) {
+                        if(/[a-z]/i.test(keyArr[j]) || /[a-z]/i.test(keyArr[j + 1])) {
+                            if(keyArr[j] > keyArr[j + 1]) {
+                                var tmp = keyArr[j];
+                                keyArr[j] = keyArr[j + 1];
+                                keyArr[j + 1] = tmp;
+                            }
+                        }
+                        else {
+                            if(parseInt(keyArr[j]) > parseInt(keyArr[j + 1])) {
+                                var tmp = keyArr[j];
+                                keyArr[j] = keyArr[j + 1];
+                                keyArr[j + 1] = tmp;
+                            }
                         }
                     }
-                    else {
-                        if(parseInt(keyArr[j]) > parseInt(keyArr[j + 1])) {
-                            var tmp = keyArr[j];
-                            keyArr[j] = keyArr[j + 1];
-                            keyArr[j + 1] = tmp;
+                    if(i == keyArr.length - 3) {
+                        for(var i = 0; i < keyArr.length; i++) {
+                            var k = keyArr[i];
+                            sortedDict[i] = entryDict[k];
+                            if(i == keyArr.length - 1) openReader(sortedDict, 0);
                         }
                     }
                 }
-                if(i == keyArr.length - 3) {
-                    for(var i = 0; i < keyArr.length; i++) {
-                        var k = keyArr[i];
-
-                        sortedDict[i] = entryDict[k];
-                        if(i == keyArr.length - 1) openReader(sortedDict, 0);
+            }
+            else if(keyArr.length == 2) {
+                if(/[a-z]/i.test(keyArr[0]) || /[a-z]/i.test(keyArr[1])) {
+                    if(keyArr[0] > keyArr[1]) {
+                        var tmp = keyArr[0];
+                        keyArr[0] = keyArr[1];
+                        keyArr[1] = tmp;
                     }
                 }
+                else {
+                    if(parseInt(keyArr[0]) > parseInt(keyArr[1])) {
+                        var tmp = keyArr[0];
+                        keyArr[0] = keyArr[1];
+                        keyArr[1] = tmp;
+                    }
+                }
+                for(var i = 0; i < keyArr.length; i++) {
+                    var k = keyArr[i];
+                    sortedDict[i] = entryDict[k];
+                    if(i == keyArr.length - 1) openReader(sortedDict, 0);
+                }
+            }
+            else {
+                openReader(entryDict, 0);
             }
         }
     })
