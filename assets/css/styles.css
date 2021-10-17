@@ -185,6 +185,8 @@ body {
     color: #ccc;
     word-break: break-all;
     overflow: hidden;
+    display: block;
+    height: 2.5rem;
 }
 
 .toolbox {
