@@ -135,7 +135,6 @@ function createBlobs(entry, entryDict, max) {
         // convert the data into an object url
         var blob = new Blob([data], {type: getMIME(entry.name)});
         var url = URL.createObjectURL(blob);
-        //console.log(url);
 
 
         var en = entry.name;
@@ -324,7 +323,7 @@ $('.toggle').click(function() {
 
 
 // auto scroll down
-var scrollDown = '';
+var scrollDown;
 $('.autoscroll').click(function() {
     var ct = $('.autoscroll').html();
     ct = $.trim(ct);
@@ -337,7 +336,7 @@ $('.autoscroll').click(function() {
 
     if(ct == ton) {
         $('.autoscroll').html(toff);
-        clearInterval(window.scrollDown);
+        clearInterval(scrollDown);
     }
     else {
         $('.autoscroll').html(ton);
