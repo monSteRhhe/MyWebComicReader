@@ -119,7 +119,7 @@ function getMIME(fn) {
 
 
 function getExt(fn) {
-    var ext = fn.split('.').pop();
+    var ext = fn.split('.').pop().toLowerCase();
     if(ext != fn) return ext;
     else return '';
 }
