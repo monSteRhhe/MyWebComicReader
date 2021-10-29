@@ -14,6 +14,8 @@
 
 .7z改成.zip应该也能用。
 
+目前仅支持单话的漫画（只有一个文件夹放漫画的），多个文件夹的还没想办法整。
+
 本地可以通过 VS Code 安装 **Live Server** 扩展使用。
 
 一个不错的本地漫画管理/阅读器：[YACReader](https://yacreader.com/)
