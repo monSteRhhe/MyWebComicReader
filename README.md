@@ -12,13 +12,9 @@
 
 功能比较简单，只能看zip压缩包的漫画，只要里面是漫画，套了几层 ~~buff~~ 文件夹都行。
 
-.7z改成.zip应该也能用。
-
 目前仅支持单话的漫画（只有一个文件夹放漫画的），多个文件夹的还没想办法整。
 
 本地可以通过 VS Code 安装 **Live Server** 扩展使用。
-
-一个不错的本地漫画管理/阅读器：[YACReader](https://yacreader.com/)
 
 ​    
 
@@ -54,7 +50,7 @@
 
   工具栏：回顶部、关闭阅读器、开/关页码显示（默认显示页码）、自动向下滚动
   
-- 优化了加载速度
+- 优化了图片加载速度
 
 - *能跑起来就算成功*
 
@@ -66,7 +62,7 @@
 
 - JSZip: [Stuk/jszip](https://github.com/Stuk/jszip)
 - jQuery: https://jquery.com/
-- FontAwesome: https://fa5.dashgame.com/
+- FontAwesome: [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
 
 ​    
 
