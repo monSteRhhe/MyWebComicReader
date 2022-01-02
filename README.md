@@ -60,9 +60,9 @@
 
 ## Credits
 
-- JSZip: [Stuk/jszip](https://github.com/Stuk/jszip)
-- jQuery: https://jquery.com/
-- FontAwesome: [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
+- JSZip: [Stuk/jszip](https://github.com/Stuk/jszip) `MIT License / GPL v3`
+- jQuery: https://jquery.com/ `MIT License`
+- FontAwesome: [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome) `CC BY 4.0 License`
 
 ​    
 
