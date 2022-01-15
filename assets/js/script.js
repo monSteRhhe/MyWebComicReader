@@ -25,7 +25,7 @@ $('#upload').change(function () {
     OpenZip(zipfile);
 
     // clear input
-    $('#upload').val('');
+    $(this).val('');
 });
 
 
