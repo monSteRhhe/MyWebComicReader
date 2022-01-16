@@ -8,6 +8,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 html {
@@ -73,7 +74,8 @@ body {
     border-radius: 12px;
     width: fit-content;
     margin: auto;
-    top: 40%;
+    top: 50%;
+    transform: translateY(-50%);
     position: relative;
     opacity: .5;
     cursor: pointer;
