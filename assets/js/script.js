@@ -167,7 +167,6 @@ function createBlobs(entry, entryDict, max) {
 // 先默认sort排序后按名称字符串中的数字大小再排序。
 function sort(list) {
     var sortList = list.sort(); // sort
-    console.log(sortList);
     // 按数字大小排序
     for(var i = 0; i < sortList.length - 1; i++) {
         for(var j = 0; j < sortList.length - 1; j++) {

@@ -122,14 +122,21 @@ body {
 }
 
 img.cimg {
+    display: block;
     pointer-events: none;
     user-select: none;
+    margin: 0;
+    padding: 0;
 }
 
 .container > .cp {
     width: 100%;
     padding: 2px 0;
     user-select: none;
+}
+
+.comicreader img {
+    width: 50rem;
 }
 
 .cp > .ll {
@@ -151,15 +158,12 @@ img.cimg {
 }
 
 .cp > span {
+    display: block;
     color: #ccc;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     z-index: 3;
     font-size: 16px;
-}
-
-.comicreader img {
-    width: 50rem;
 }
 
 .titlebox {
@@ -236,7 +240,7 @@ img.cimg {
 }
 
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 50rem) {
     html {
         font-size: 20px;
     }
