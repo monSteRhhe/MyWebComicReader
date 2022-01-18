@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -10,53 +10,54 @@
 <body>
     <!-- github icon -->
     <a class="gh" href="https://github.com/monSteRhhe/MyWebComicReader">
-        <img src="assets/img/fa/github.svg">
+        <img src="assets/img/fa/github.svg" />
     </a>
 
-    <!-- loading progess -->
+    <!-- loading process -->
     <div class="loading">
         <div class="spinner"></div>
         <div class="loads">0 / 0</div>
     </div>
 
-    <!-- show reading progess -->
-    <div class="progressbar"></div>
+    <!-- reading process bar -->
+    <!-- 浏览器窗口缩放会有偏差 -->
+    <div class="processbar"></div>
 
-    <!-- display comic here -->
+    <!-- comic reader -->
     <div class="comicreader">
-        <div class="content"></div>
+        <div class="container"></div>
     </div>
 
-    <!-- widgets -->
+    <!-- widgets box -->
     <div class="titlebox">
         <span class="title"></span>
     </div>
     <div class="toolbox">
         <!-- to-top -->
         <div class="to-top">
-            <img src="assets/img/fa/chevron-up.svg"/>
+            <img src="assets/img/fa/chevron-up.svg" />
         </div>
         <!-- close -->
         <div class="close">
-            <img src="assets/img/fa/times.svg"/>
+            <img src="assets/img/fa/times.svg" />
         </div>
         <!-- toggle -->
         <div class="toggle">
-            <img src="assets/img/fa/toggle-on.svg"/>
+            <img src="assets/img/fa/toggle-on.svg" />
         </div>
         <!-- auto scroll -->
         <div class="autoscroll">
-            <img src="assets/img/fa/play-circle.svg"/>
+            <img src="assets/img/fa/play-circle.svg" />
         </div>
     </div>
 
     <!-- upload box -->
     <div class="uploadbox" id="uploadbox">
         <div class="icon">
-            <img src="assets/img/fa/upload.svg" alt="Upload"/>
+            <img src="assets/img/fa/upload.svg" alt="Upload" />
         </div>
         <div class="tip">
-            <span>Click Here or Drop a .zip File Here to Upload</span>
+            <span>Click Here or Drag&Drop a .zip File Here to Upload</span>
         </div>
     </div>
     <input type="file" accept="application/x-zip-compressed" id="upload" style="display: none;"/>
@@ -68,8 +69,9 @@
     </div>
 
     <!-- scripts -->
-    <script src="assets/js/jquery/jquery-3.6.0.min.js"></script>
-    <script async src="assets/js/jszip/jszip.min.js?version=3.7.1"></script>
-    <script async src="assets/js/script.js"></script>
+    <script type="text/javascript" src="assets/js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" async src="assets/js/jszip/jszip.min.js?version=3.7.1"></script>
+    <script type="text/javascript" async src="assets/js/lazy/jquery.lazy.min.js?version=1.7.10"></script>
+    <script type="text/javascript" async src="assets/js/script.js"></script>
 </body>
 </html>

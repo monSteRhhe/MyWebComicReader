@@ -1,6 +1,6 @@
 'use strict';
 
-// drop to upload
+/* 拖放上传 */
 document.ondragover = function(e) {e.preventDefault();}
 
 document.ondrop = function(e) {e.preventDefault();}
@@ -13,23 +13,22 @@ uploadbox.ondrop = function(e) {
 }
 
 
-// click to upload
+/* 点击选择文件上传 */
 $('.uploadbox').click(function() {
     $('#upload').trigger('click');
 })
 
 
-// open .zip comic from computer
+/* 打开zip压缩包 */
 $('#upload').change(function () {
     var zipfile = $(this)[0].files[0];
     OpenZip(zipfile);
 
-    // clear input
-    $(this).val('');
+    $(this).val(''); // 清空input
 });
 
 
-// close reader
+/* 关闭阅读器 */
 $('.close').click(function() {
     $('.toolbox').css('transform', 'translateY(6rem)');
     $('.titlebox').css('transform', 'translateY(-6rem)');
@@ -52,32 +51,32 @@ function checkExt(fn) {
 }
 
 
-// open .zip comic file
+/* 打开zip压缩包的图片 */
 function OpenZip(file) {
-    // clear previous blobs
+    // 清除之前的 blob
     clearBlobs();
-    $('.content').empty();
+    $('.container').empty();
 
-    // hide upload btn
+    // 隐藏上传
     $('.uploadbox').hide();
 
-    // init & show loading
+    // 显示加载进度
     $('.loads').html('0 / 0');
     $('.loading').fadeIn('slow');
 
-    // zipfile name as title
+    // zip压缩包名作为标题
     var fne = file.name;
     var fn = fne.substring(0, fne.lastIndexOf("."));
-    $('.title').html(fn)
+    $('.title').html(fn);
 
     var max = 0;
     var entryDict = {};
 
     var cz = new JSZip();
-    // read the blob
+    // 读取 blob
     cz.loadAsync(file)
     .then(function(zip) {
-        // get max length
+        // 获取总页数
         var zdict_values = Object.values(zip.files);
         for(var i = 0; i < zdict_values.length; i++) {
             if(zdict_values[i].dir == false) {
@@ -96,7 +95,7 @@ function OpenZip(file) {
 }
 
 
-// get file's MIME type
+/* 获取文件的 MIME type */
 function getMIME(fn) {
     var ext = getExt(fn).toLowerCase();
 
@@ -129,10 +128,10 @@ function createBlobs(entry, entryDict, max) {
     entry
     .async('arraybuffer')
     .then(function(ab) {
-        // get arraybuffer
+        // 获取ArrayBuffer
         var data = ab;
 
-        // convert the data into an object url
+        // data转换ObjectURL
         var blob = new Blob([data], {type: getMIME(entry.name)});
         var url = URL.createObjectURL(blob);
 
@@ -146,14 +145,13 @@ function createBlobs(entry, entryDict, max) {
         var keyArr = Object.keys(entryDict);
         var len = keyArr.length;
 
-
         $('.totalpage').html(max + 'P');
         $('.loads').html(len  + ' / ' + max);
 
         if(len == max) {
             var sortedDict = {};
 
-            // sort keyArr
+            // 排序 keyArr
             if(keyArr.length >= 3) {
                 for(var i = 0; i < keyArr.length - 1 - 1; i++) {
                     for(var j = 0; j < keyArr.length - 1 - i; j++) {
@@ -213,8 +211,10 @@ function createBlobs(entry, entryDict, max) {
 function openReader(dict, index) {
     var key = Object.keys(dict);
 
-    $('.content').append('<div class="cp"><div class="ll"></div><div class="lr"></div><span>' + (index + 1) + '</span></div>');
-    $('.content').append('<img class="cimg" src="' + dict[key[index]] + '"/>');
+    $('.container').append('<div class="cp"><div class="ll"></div><div class="lr"></div><span>' + (index + 1) + '</span></div>'); // 页间
+    // 加载图片
+    //$('.container').append('<img class="cimg" src="' + dict[key[index]] + '"/>');
+    $('.container').append('<img class="cimg lazy" data-src="' + dict[key[index]] + '" />');
 
     if(index != key.length - 1) {
         openReader(dict, index + 1);
@@ -222,11 +222,12 @@ function openReader(dict, index) {
     else {
         $('.loading').hide();
         $('.comicreader, .totalpage').fadeIn();
+        Lazy();
     }
 }
 
 
-// clear blobs
+/* 清空blob */
 function clearBlobs() {
     $('.cimg').each(function() {
         URL.revokeObjectURL($(this).attr('src'));
@@ -234,7 +235,7 @@ function clearBlobs() {
 }
 
 
-// scroll to top
+/* 回顶部 */
 $('.to-top').click(function() {
     $('body,html').animate({
         scrollTop: 0
@@ -242,24 +243,26 @@ $('.to-top').click(function() {
 })
 
 
-// progress bar
-var sh = $(window).height(); // visible screen height
+/* 进度条 */
+var sh = $(window).height(); // 窗口可见高度
 
 $(document).scroll(function() {
-    var st = $(window).scrollTop(); // scrolltop height
-    var to = $(document.body).height(); // body height
+    var st = $(window).scrollTop(); // scrolltop高度
+    var to = $('.comicreader').height(); // reader高度
 
     var percent = (st + sh) / to;
-    if(percent > 1) {percent = 1;}
+    if(percent > 1) {
+        percent = 1;
+    }
     percent = (percent * 100) + '%';
 
-    $('.progressbar').attr('style', 'width: ' + percent + ';');
+    $('.processbar').attr('style', 'width: ' + percent + ';');
 
-    if(st == 0) $('.progressbar').hide();
+    if(st == 0) $('.processbar').hide();
 })
 
 
-// get system time
+/* 获取系统时间 */
 function sysTime() {
     var d = new Date();
     var h = d.getHours();
@@ -270,7 +273,7 @@ function sysTime() {
 }
 
 
-// get Beijing time
+/* 获取北京时间 */
 function bjTime() {
     var d = new Date(new Date().getTime()+(parseInt(new Date().getTimezoneOffset() / 60) + 8) * 3600 * 1000);
     var h = d.getHours();
@@ -281,7 +284,7 @@ function bjTime() {
 }
 
 
-// display time
+/* 点击显示时间 */
 setInterval(function() {
     //var t = sysTime();
     var t = bjTime();
@@ -289,8 +292,8 @@ setInterval(function() {
 }, 1000)
 
 
-// click to show widgets
-$('.content').click(function() {
+/* 点击显示工具栏 */
+$('.container').click(function() {
     if($('.toolbox').css('display') == 'none') {
         $('.toolbox, .titlebox').fadeIn();
         $('.toolbox, .titlebox').css('transform', 'translateY(0)');
@@ -305,7 +308,7 @@ $('.content').click(function() {
 })
 
 
-// toggle hide/show of page number
+/* 页间页数显示/隐藏切换 */
 $('.toggle').click(function() {
     var ct = $('.toggle').html();
     ct = $.trim(ct);
@@ -322,7 +325,7 @@ $('.toggle').click(function() {
 })
 
 
-// auto scroll down
+/* 自动滚动 */
 var scrollDown;
 $('.autoscroll').click(function() {
     var ct = $('.autoscroll').html();
@@ -354,3 +357,12 @@ $('.autoscroll').click(function() {
     }
 })
 
+/* jquery.lazy */
+function Lazy() {
+    $('img.lazy').Lazy({
+        bind: 'event',
+        scrollDirection: 'vertical',
+        effect: 'fadeIn',
+        visibleOnly: true
+    });
+}

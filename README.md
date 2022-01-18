@@ -63,6 +63,7 @@
 - JSZip: [Stuk/jszip](https://github.com/Stuk/jszip) `MIT License / GPL v3`
 - jQuery: https://jquery.com/ `MIT License`
 - FontAwesome: [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome) `CC BY 4.0 License`
+- jquery.lazy: [dkern/jquery.lazy](https://github.com/dkern/jquery.lazy) `MIT / GPL-2.0 License`
 
 ​    
 
