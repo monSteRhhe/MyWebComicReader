@@ -151,60 +151,52 @@ function createBlobs(entry, entryDict, max) {
         if(len == max) {
             var sortedDict = {};
 
-            // 排序 keyArr
-            if(keyArr.length >= 3) {
-                for(var i = 0; i < keyArr.length - 1 - 1; i++) {
-                    for(var j = 0; j < keyArr.length - 1 - i; j++) {
-                        if(/[a-z]/i.test(keyArr[j]) || /[a-z]/i.test(keyArr[j + 1])) {
-                            if(keyArr[j] > keyArr[j + 1]) {
-                                var tmp = keyArr[j];
-                                keyArr[j] = keyArr[j + 1];
-                                keyArr[j + 1] = tmp;
-                            }
-                        }
-                        else {
-                            if(parseInt(keyArr[j]) > parseInt(keyArr[j + 1])) {
-                                var tmp = keyArr[j];
-                                keyArr[j] = keyArr[j + 1];
-                                keyArr[j + 1] = tmp;
-                            }
-                        }
-                    }
-                    if(i == keyArr.length - 3) {
-                        for(var i = 0; i < keyArr.length; i++) {
-                            var k = keyArr[i];
-                            sortedDict[i] = entryDict[k];
-                            if(i == keyArr.length - 1) openReader(sortedDict, 0);
-                        }
-                    }
-                }
-            }
-            else if(keyArr.length == 2) {
-                if(/[a-z]/i.test(keyArr[0]) || /[a-z]/i.test(keyArr[1])) {
-                    if(keyArr[0] > keyArr[1]) {
-                        var tmp = keyArr[0];
-                        keyArr[0] = keyArr[1];
-                        keyArr[1] = tmp;
-                    }
-                }
-                else {
-                    if(parseInt(keyArr[0]) > parseInt(keyArr[1])) {
-                        var tmp = keyArr[0];
-                        keyArr[0] = keyArr[1];
-                        keyArr[1] = tmp;
-                    }
-                }
-                for(var i = 0; i < keyArr.length; i++) {
-                    var k = keyArr[i];
-                    sortedDict[i] = entryDict[k];
-                    if(i == keyArr.length - 1) openReader(sortedDict, 0);
-                }
-            }
-            else {
-                openReader(entryDict, 0);
+            var sort_keyArr = sort(keyArr); // 排序keyArr
+
+            for(var i = 0; i < len; i++) {
+                var k = sort_keyArr[i];
+                sortedDict[i] = entryDict[k];
+                if(i == len - 1) openReader(sortedDict, 0);
             }
         }
     })
+}
+
+
+/* 排序 */
+// 先默认sort排序后按名称字符串中的数字大小再排序。
+function sort(list) {
+    var sortList = list.sort(); // sort
+    console.log(sortList);
+    // 按数字大小排序
+    for(var i = 0; i < sortList.length - 1; i++) {
+        for(var j = 0; j < sortList.length - 1; j++) {
+            // 提取图片名字符串中的数字
+            var numlist1 = sortList[j].match(/\d+(.\d+)?/g);
+            var numlist2 = sortList[j + 1].match(/\d+(.\d+)?/g);
+
+            for(var sp = 0; sp < numlist1.length; sp++) {
+                var num1 = parseInt(numlist1[sp]);
+                var num2 = parseInt(numlist2[sp]);
+
+                if(sp == 0 && num1 > num2) {
+                    console.log(num1, num2);
+                    console.log('T1');
+                    var tmp = sortList[j];
+                    sortList[j] = sortList[j + 1];
+                    sortList[j + 1] = tmp;
+                }
+
+                if(numlist1[0] == numlist2[0] && sp > 0 && num1 > num2) {
+                    console.log('T2');
+                    var tmp = sortList[j];
+                    sortList[j] = sortList[j + 1];
+                    sortList[j + 1] = tmp;
+                }
+            }
+        }
+    }
+    return sortList;
 }
 
 
@@ -356,6 +348,7 @@ $('.autoscroll').click(function() {
         }
     }
 })
+
 
 /* jquery.lazy */
 function Lazy() {
