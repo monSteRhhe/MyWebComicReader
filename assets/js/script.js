@@ -205,7 +205,7 @@ function openReader(dict, index) {
     $('.container').append('<div class="cp"><div class="ll"></div><div class="lr"></div><span>' + (index + 1) + '</span></div>'); // 页间
     // 加载图片
     //$('.container').append('<img class="cimg" src="' + dict[key[index]] + '"/>');
-    $('.container').append('<img class="cimg lazy" data-src="' + dict[key[index]] + '" />');
+    $('.container').append('<img class="cimg" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="' + dict[key[index]] + '">');
 
     if(index != key.length - 1) {
         openReader(dict, index + 1);
@@ -213,7 +213,10 @@ function openReader(dict, index) {
     else {
         $('.loading').hide();
         $('.comicreader, .totalpage').fadeIn();
-        Lazy();
+
+        /* lazyload */
+        let images = document.querySelectorAll('.cimg');
+        lazyload(images);
     }
 }
 
@@ -347,14 +350,3 @@ $('.autoscroll').click(function() {
         }
     }
 })
-
-
-/* jquery.lazy */
-function Lazy() {
-    $('img.lazy').Lazy({
-        bind: 'event',
-        scrollDirection: 'vertical',
-        effect: 'fadeIn',
-        visibleOnly: true
-    });
-}

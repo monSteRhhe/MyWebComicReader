@@ -22,7 +22,7 @@
 
 ![serena](/docs/serena.gif)
 
-
+​    
 
 ## Features
 
@@ -30,7 +30,11 @@
 
 - 仅支持本地的 **.zip** 压缩包
 
+- 通过点击/拖放上传zip压缩包
+
 - 按压缩包内图片名中的数字大小排序
+
+  改进了下方法，名字中带字符应该也是没问题的
 
 - 显示加载进度
 
@@ -40,32 +44,26 @@
 
 - 每页顶部（页间）显示页码
 
-- 通过点击/拖放上传zip压缩包
-
 - 阅读器点击显示/隐藏标题（压缩包名）
 
 - 阅读器点击显示/隐藏工具栏
 
   工具栏：回顶部、关闭阅读器、开/关页间页码显示（默认显示）、自动向下滚动
-  
+
 - 优化了图片加载速度
 
-- (*) 用jquery.lazy懒加载图片（可能并没用上，之后有空再看看
+- 用 **Lazyload** 懒加载图片
 
 - (*) 用手机端浏览器看，关闭页间显示后图片间会有条缝隙，还没解决
 
-- *能跑起来就算成功*
-
-- 没了
-
-​     
+​    
 
 ## Credits
 
 - JSZip: [Stuk/jszip](https://github.com/Stuk/jszip) `MIT License / GPL v3`
 - jQuery: https://jquery.com/ `MIT License`
 - FontAwesome: [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome) `CC BY 4.0 License`
-- jquery.lazy: [dkern/jquery.lazy](https://github.com/dkern/jquery.lazy) `MIT / GPL-2.0 License`
+- Lazyload: [tuupola/lazyload](https://github.com/tuupola/lazyload) `MIT License`
 
 ​    
 
