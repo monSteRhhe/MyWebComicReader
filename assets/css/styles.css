@@ -74,7 +74,9 @@ body {
 .uploadbox {
     color: #e5e5e5;
     padding: 12px 15px;
-    background-color: rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, .2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 8px rgba(255, 255, 255, .5);
     border: 3px dashed #e5e5e5;
     border-radius: 12px;
     width: fit-content;
@@ -82,7 +84,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    opacity: .5;
+    opacity: .7;
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
