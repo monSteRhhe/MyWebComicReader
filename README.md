@@ -67,7 +67,6 @@
 
 ​    
 
-## Background Image:
+## Background Image
 
 [monologue](https://www.pixiv.net/artworks/75685593) by Pixiv@Yaduo铮粽子
-
