@@ -1,8 +1,0 @@
-.processbar {
-    top: 0;
-    position: fixed;
-    height: 7px;
-    width: 0;
-    background-color: #777;
-    z-index: 10;
-}
