@@ -1,4 +1,4 @@
-<div align="center" style="width: 150px"><img src="./docs/icon.webp"/></div>
+<div align="center"><img src="./docs/icon.webp"/></div>
 
 # <div align="center">MyWebComicReader</div>
 
