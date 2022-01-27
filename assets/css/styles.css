@@ -11,35 +11,18 @@ body {
     height: 100%;
 }
 
-html {
-    font-size: 18px;
-}
-
 body {
-    background-image: linear-gradient(to right,rgba(0,0,0,.5),rgba(0,0,0,.5)), url('../img/bg.webp');
+    background-image: linear-gradient(to right,rgba(0,0,0,.6),rgba(0,0,0,.6)), url('../img/bg.webp');
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+
+    font-size: 20px;
+
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -ms-text-size-adjust: 100%;
-}
-
-.gh {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    opacity: .5;
-    cursor: pointer;
-    width: 1.5rem;
-    height: 1.5rem;
-    transition: .1s opacity;
-    -webkit-transition: .1s opacity;
-}
-
-.gh:hover {
-    opacity: .8;
 }
 
 .loading {
@@ -79,28 +62,33 @@ body {
 }
 
 .uploadbox {
-    color: #e5e5e5;
-    padding: 12px 15px;
-    background-color: rgba(0, 0, 0, .2);
+    color: #f3f4f5;
+    padding: 1.5rem 4rem;
+    background-color: rgba(0, 0, 0, .1);
     backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, .5);
-    border: 2px dashed #e5e5e5;
-    border-radius: 12px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, .5);
+    border: 5px dashed #2a2b2c;
+    /* border-radius: 12px; */
     width: fit-content;
     margin: auto;
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    opacity: .7;
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
+
+    transition: .2s background-color;
+    -webkit-transition: .2s background-color;
+}
+
+.uploadbox:hover {
+    background-color: rgba(0, 0, 0, .9);
 }
 
 .uploadbox > .icon {
     width: 30px;
     height: 30px;
-    opacity: .7;
     margin: auto;
     margin-top: 1.5rem;
     margin-bottom: 0.8rem;
@@ -108,9 +96,9 @@ body {
 }
 
 .uploadbox > .tip {
-    opacity: .7;
     margin-bottom: 1.5rem;
-    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -247,12 +235,12 @@ img.cimg {
 
 
 @media screen and (max-width: 50rem) {
-    html {
-        font-size: 20px;
-    }
-
     .cimg {
         max-width: 100%;
+    }
+
+    .uploadbox {
+        width: 100%;
     }
 }
 
