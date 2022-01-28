@@ -1,15 +1,20 @@
 'use strict';
 
 /* 拖放上传 */
-document.ondragover = function(e) {e.preventDefault();}
-
+document.ondragover = function(e) {
+    e.preventDefault();
+    $('div.dragbox').show();
+}
 document.ondrop = function(e) {e.preventDefault();}
 
-uploadbox.ondragover = function(e) {e.preventDefault();}
-
-uploadbox.ondrop = function(e) {
+drag.ondragover = function(e) {
+    e.preventDefault();
+}
+drag.ondragleave = function() {$('div.dragbox').hide();}
+drag.ondrop = function(e) {
     var zipfile = e.dataTransfer.files[0];
     OpenZip(zipfile);
+    $('div.dragbox').hide();
 }
 
 
