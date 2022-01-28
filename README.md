@@ -22,7 +22,7 @@
 
 [**DEMO**](https://monsterhhe.github.io/MyWebComicReader)
 
-![serena](/docs/serena.gif)
+![serena](./docs/serena.gif)
 
 ​    
 
