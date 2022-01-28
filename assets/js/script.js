@@ -4,17 +4,24 @@
 document.ondragover = function(e) {
     e.preventDefault();
     $('div.dragbox').show();
+    $('div.info').hide();
+    $('div.uploadbox').hide();
 }
 document.ondrop = function(e) {e.preventDefault();}
 
 drag.ondragover = function(e) {
     e.preventDefault();
 }
-drag.ondragleave = function() {$('div.dragbox').hide();}
+drag.ondragleave = function() {
+    $('div.dragbox').hide();
+    $('div.info').show();
+    $('div.uploadbox').show();
+}
 drag.ondrop = function(e) {
     var zipfile = e.dataTransfer.files[0];
     OpenZip(zipfile);
     $('div.dragbox').hide();
+    $('div.info').show();
 }
 
 
