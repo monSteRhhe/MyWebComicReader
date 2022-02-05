@@ -181,7 +181,7 @@ function sort(list) {
     var sortList = list.sort(); // sort
     // 按数字大小排序
     for(var i = 0; i < sortList.length - 1; i++) {
-        for(var j = 0; j < sortList.length - 1; j++) {
+        for(var j = 0; j < sortList.length - 2; j++) {
             // 提取图片名字符串中的数字
             var numlist1 = sortList[j].match(/\d+(.\d+)?/g);
             var numlist2 = sortList[j + 1].match(/\d+(.\d+)?/g);
@@ -191,15 +191,12 @@ function sort(list) {
                 var num2 = parseInt(numlist2[sp]);
 
                 if(sp == 0 && num1 > num2) {
-                    console.log(num1, num2);
-                    console.log('T1');
                     var tmp = sortList[j];
                     sortList[j] = sortList[j + 1];
                     sortList[j + 1] = tmp;
                 }
 
                 if(numlist1[0] == numlist2[0] && sp > 0 && num1 > num2) {
-                    console.log('T2');
                     var tmp = sortList[j];
                     sortList[j] = sortList[j + 1];
                     sortList[j + 1] = tmp;
