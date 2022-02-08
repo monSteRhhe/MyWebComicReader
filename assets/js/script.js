@@ -178,28 +178,32 @@ function createBlobs(entry, entryDict, max) {
 /* 排序 */
 // 先默认sort排序后按名称字符串中的数字大小再排序。
 function sort(list) {
-    var sortList = list.sort(); // sort
+    var sortList = list.sort(); // sort排序
     // 按数字大小排序
     for(var i = 0; i < sortList.length - 1; i++) {
         for(var j = 0; j < sortList.length - 2; j++) {
-            // 提取图片名字符串中的数字
-            var numlist1 = sortList[j].match(/\d+(.\d+)?/g);
-            var numlist2 = sortList[j + 1].match(/\d+(.\d+)?/g);
+            // 提取图片名字符串中的数字 (多个则分割为列表)
+            var numlist1 = sortList[j].match(/\d+/g);
+            var numlist2 = sortList[j + 1].match(/\d+/g);
 
-            for(var sp = 0; sp < numlist1.length; sp++) {
-                var num1 = parseInt(numlist1[sp]);
-                var num2 = parseInt(numlist2[sp]);
+            if(numlist1 != null && numlist2 != null) { // 筛除不包含数字的字符串
+                for(var sp = 0; sp < numlist1.length; sp++) {
+                    var num1 = parseInt(numlist1[sp]);
+                    var num2 = parseInt(numlist2[sp]);
 
-                if(sp == 0 && num1 > num2) {
-                    var tmp = sortList[j];
-                    sortList[j] = sortList[j + 1];
-                    sortList[j + 1] = tmp;
-                }
+                    // 第一段数字比较
+                    if(sp == 0 && num1 > num2) {
+                        var tmp = sortList[j];
+                        sortList[j] = sortList[j + 1];
+                        sortList[j + 1] = tmp;
+                    }
 
-                if(numlist1[0] == numlist2[0] && sp > 0 && num1 > num2) {
-                    var tmp = sortList[j];
-                    sortList[j] = sortList[j + 1];
-                    sortList[j + 1] = tmp;
+                    // 第一段数字大小相同比较其他段
+                    if(numlist1[0] == numlist2[0] && sp > 0 && num1 > num2) {
+                        var tmp = sortList[j];
+                        sortList[j] = sortList[j + 1];
+                        sortList[j + 1] = tmp;
+                    }
                 }
             }
         }
