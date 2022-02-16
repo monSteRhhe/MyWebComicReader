@@ -342,7 +342,7 @@ $('.autoscroll').click(function() {
     var ton = '<img src="assets/img/fa/stop-circle.svg">';
 
     var st = $(window).scrollTop();
-    var to = $(document.body).height();
+    var to = $('div.comicreader').height();
 
     if(ct == ton) {
         $('.autoscroll').html(toff);
