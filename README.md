@@ -12,23 +12,17 @@
 
 写的很low，随缘更新  ~~(菜)~~。
 
-功能比较简单，只能看zip压缩包的漫画，只要里面是漫画，套了几层 ~~buff~~ 文件夹都行。
+功能比较简单，只能看zip压缩包的漫画，只要最里面有漫画的文件夹，外面套了几层文件夹都行（正常没事应该不会套很多没用的文件夹吧）。
 
-7z直接改后缀改成zip是不行的。
+7z直接改后缀改成zip是不能用的。
 
-目前仅支持单话的漫画（只有一个文件夹放漫画的），压缩包里有多个文件夹应该不能正常使用。
+本地可以通过 VS Code 安装 **Live Server** 扩展使用，或者直接用部署在github pages的 [**DEMO**](https://monsterhhe.github.io/MyWebComicReader)
 
-本地可以通过 VS Code 安装 **Live Server** 扩展使用。
-
-​    
-
-[**DEMO**](https://monsterhhe.github.io/MyWebComicReader)
-
-![serena](./docs/serena.gif)
+<div align="center"><img src="./docs/serena.gif"/></div>
 
 ​    
 
-## Features
+## 特性
 
 - 简单
 
@@ -54,17 +48,19 @@
 
 - 阅读器点击显示/隐藏工具栏
 
-  工具栏：回顶部、关闭阅读器、开/关页间页码显示（默认显示）、自动向下滚动
+  工具栏：回顶部、关闭阅读器、开/关页间页码显示（默认显示）、自动向下滚动、章节选择（多章节时）
 
-- 优化了图片加载速度
+- 优化了加载图片的速度
 
 - 用 **Lazyload** 懒加载图片
 
 - 用手机端浏览器看，关闭页间显示后图片间可能会有条缝隙，影响不大应该
 
+- 简单支持了多章节（zip压缩包内多个漫画文件夹），目前只能选择章节跳转，跳转多了可能会卡
+
 ​    
 
-## Credits
+## 致谢
 
 - JSZip: [Stuk/jszip](https://github.com/Stuk/jszip) `MIT License / GPL v3`
 - jQuery: https://jquery.com/ `MIT License`
@@ -73,6 +69,6 @@
 
 ​    
 
-## Background Image
+## 背景图
 
 [monologue](https://www.pixiv.net/artworks/75685593) by Pixiv@Yaduo铮粽子
