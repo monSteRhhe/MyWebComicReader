@@ -270,8 +270,8 @@ function openReader(dict, index) {
             $('.container').empty();
             clearBlobs();
 
-            // 隐藏界面
-            $('.comicreader, .titlebox, .toolbox, .chapbox').hide();
+            $('.comicreader, .titlebox, .toolbox, .chapbox').hide(); // 隐藏界面
+            $('.toggle').html('<img src="assets/img/fa/toggle-on.svg">'); // 切换后页间会恢复，恢复隐藏页间的开关
 
             // 显示加载进度
             $('.loads').html('0 / 0');
