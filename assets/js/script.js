@@ -48,13 +48,15 @@ $('.close').click(function() {
     $('.toolbox, .titlebox, .comicreader, .progressbar').fadeOut();
 
     $('.toggle').html('<img src="assets/img/fa/toggle-on.svg">');
-    $('.totalpage').empty();
+    $('.totalpage, .container, chapbox').empty();
+    $('.chaplist').hide();
 
     $('.autoscroll').html('<img src="assets/img/fa/play-circle.svg">');
     clearInterval(window.scrollDown);
 })
 
 
+/* 扩展名匹配 */
 function checkExt(fn) {
     var ext = getExt(fn);
     if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'bmp' || ext == 'webp') return true;
@@ -64,6 +66,7 @@ function checkExt(fn) {
 
 /* 打开zip压缩包的图片 */
 function OpenZip(file) {
+    window.file = file;
     // 清除之前的 blob
     clearBlobs();
     $('.container').empty();
@@ -75,30 +78,60 @@ function OpenZip(file) {
     $('.loads').html('0 / 0');
     $('.loading').fadeIn('slow');
 
-    // zip压缩包名作为标题
-    var fne = file.name;
-    var fn = fne.substring(0, fne.lastIndexOf("."));
-    $('.title').html(fn);
+    loadChapter(file, 0);
+}
 
+
+/* 加载章节内容 */
+function loadChapter(file, chapn) {
     var max = 0;
     var entryDict = {};
+    var chapList = []; // 每话章节名数组
 
     var cz = new JSZip();
     // 读取 blob
     cz.loadAsync(file)
     .then(function(zip) {
-        // 获取总页数
-        var zdict_values = Object.values(zip.files);
-        for(var i = 0; i < zdict_values.length; i++) {
-            if(zdict_values[i].dir == false) {
-                if(checkExt(zdict_values[i].name)) max += 1;
-            }
-        }
-
+        // 获取章节列表
         zip.forEach(function(relativePath, zipEntry) {
             if(zipEntry.dir == false) {
-                if(checkExt(zipEntry.name)) {
-                    createBlobs(zipEntry, entryDict, max);
+                var chapName = relativePath.split('/')[relativePath.split('/').length - 2]; // 图片的存放路径
+                if(chapList.indexOf(chapName) == -1) chapList.push(chapName);
+            }
+        })
+        var s_cl = sort(chapList);
+
+        $('.title').html(s_cl[chapn]); // 章节作为标题
+
+        if(s_cl.length > 1) {
+            $('.chaplist').show();
+        }
+
+        // 添加目录
+        if($('.chapbox').children().length == 0) {
+            for(var i = 0; i < s_cl.length; i++) $('.chapbox').append('<div class="chap" chapter-id="' + i + '">' + s_cl[i] + '</div>');
+        }
+        else {
+            $('.chapbox').empty();
+            for(var i = 0; i < s_cl.length; i++) $('.chapbox').append('<div class="chap" chapter-id="' + i + '">' + s_cl[i] + '</div>');
+        }
+
+        // 获取章节页数
+        zip.forEach(function(relativePath, zipEntry) {
+            if(zipEntry.dir == false) {
+                if(relativePath.split('/')[relativePath.split('/').length - 2] == s_cl[chapn]) {
+                    if(checkExt(zipEntry.name)) max += 1;
+                }
+            }
+        })
+
+        // 加载图片
+        zip.forEach(function(relativePath, zipEntry) {
+            if(zipEntry.dir == false) {
+                if(relativePath.split('/')[relativePath.split('/').length - 2] == s_cl[chapn]) {
+                    if(checkExt(zipEntry.name)) {
+                        createBlobs(zipEntry, entryDict, max);
+                    }
                 }
             }
         })
@@ -179,8 +212,8 @@ function createBlobs(entry, entryDict, max) {
 function sort(list) {
     var sortList = list.sort(); // sort排序
     // 按数字大小排序
-    for(var i = 0; i < sortList.length - 1; i++) {
-        for(var j = 0; j < sortList.length - 2; j++) {
+    for(var i = 0; i < sortList.length; i++) {
+        for(var j = 0; j < sortList.length - 1; j++) {
             // 提取图片名字符串中的数字 (多个则分割为列表)
             var numlist1 = sortList[j].match(/\d+/g);
             var numlist2 = sortList[j + 1].match(/\d+/g);
@@ -226,9 +259,26 @@ function openReader(dict, index) {
         $('.loading').hide();
         $('.comicreader, .totalpage').fadeIn();
 
-        /* lazyload */
+        // 图片懒加载
         let images = document.querySelectorAll('.cimg');
         lazyload(images);
+
+        // 章节切换
+        $('.chap').click(function() {
+            var chapid = $(this).attr('chapter-id');
+
+            $('.container').empty();
+            clearBlobs();
+
+            // 隐藏界面
+            $('.comicreader, .titlebox, .toolbox, .chapbox').hide();
+
+            // 显示加载进度
+            $('.loads').html('0 / 0');
+            $('.loading').show();
+
+            loadChapter(window.file, chapid);
+        })
     }
 }
 
@@ -257,9 +307,7 @@ $(document).scroll(function() {
     var to = $('.comicreader').height(); // reader高度
 
     var percent = (st + sh) / to;
-    if(percent > 1) {
-        percent = 1;
-    }
+    if(percent > 1) percent = 1;
     percent = (percent * 100) + '%';
 
     $('.processbar').attr('style', 'width: ' + percent + ';');
@@ -361,4 +409,14 @@ $('.autoscroll').click(function() {
             }, 10)
         }
     }
+})
+
+/* 章节选择/切换 */
+$('.chaplist').click(function() {
+    if($('.chapbox').css('display') == 'none') $('.chapbox').show();
+    else $('.chapbox').hide();
+})
+
+$('.comicreader, .titlebox, .to-top, .close, .prev, .next').click(function() {
+    if($('.chapbox').css('display') != 'none') $('.chapbox').hide();
 })

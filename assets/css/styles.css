@@ -245,6 +245,35 @@ img.cimg {
     float: left;
 }
 
+.chaplist,
+.prev,
+.next {
+    display: none;
+}
+
+.chapbox {
+    margin: auto;
+    position: fixed;
+    display: none;
+    max-width: 50rem;
+    bottom: 4rem;
+    left:0;
+    right:0;
+    max-height: 20rem;
+    background-color: #2b2b2b;
+    z-index: 4;
+    color: white;
+    opacity: .9;
+    user-select: none;
+    cursor: pointer;
+    overflow: auto;
+}
+
+.chapbox > .chap {
+    padding: 6px 12px;
+    border-top: 1px solid #fff;
+}
+
 .info {
     position: fixed;
     left: 0;
