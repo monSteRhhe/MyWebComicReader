@@ -4,8 +4,6 @@
 >
 > 一个非常简单的基于网页的.zip压缩包漫画阅读器。
 
-​    
-
 ## 碎碎念
 
 随缘更新
@@ -15,8 +13,6 @@
 本地可以开启 HTTP 服务器使用，比如 VS Code 安装 `Live Server` 扩展；Python3 使用 `python -m http.server`；Node.js 使用 `npm install -g http-server`，`http-server`。
 
 或者直接用部署在GithubPages的 [**DEMO**](https://monsterhhe.github.io/MyWebComicReader)。
-
-​    
 
 ## 特性
 
@@ -42,15 +38,11 @@
 
 - 懒加载图片
 
-​    
-
 ## 使用到
 
 - libarchivejs: [nika-begiashvili/libarchivejs](https://github.com/nika-begiashvili/libarchivejs) `MIT License`
 - Lazyload: [tuupola/lazyload](https://github.com/tuupola/lazyload) `MIT License`
 - FontAwesome: [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome) `CC BY 4.0 License`
-
-​    
 
 ## 背景图
 
