@@ -1,9 +1,9 @@
 'use strict';
 
-import {Archive} from '/assets/js/libarchive.js/main.js';
+import {Archive} from './libarchive.js/main.js';
 
 Archive.init({
-    workerUrl: '/assets/js/libarchive.js/dist/worker-bundle.js'
+    workerUrl: window.document.location.href + 'assets/js/libarchive.js/dist/worker-bundle.js'
 });
 
 /**
