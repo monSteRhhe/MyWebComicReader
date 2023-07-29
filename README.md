@@ -1,9 +1,5 @@
 <div align="center"><img src="./docs/images/header.webp"/></div>
 
-> A very simple web based .zip comic reader.
->
-> 一个非常简单的基于网页的.zip压缩包漫画阅读器。
-
 ## 碎碎念
 
 随缘更新
