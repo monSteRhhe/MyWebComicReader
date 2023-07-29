@@ -1,0 +1,37 @@
+/* 加载 */
+.loading {
+    z-index: 3;
+    position: relative;
+    margin: 0 auto;
+    top: 45%;
+    display: none;
+}
+
+.loading > .spinner {
+    margin: 0 auto;
+    background-image: url(../img/fa/spinner.svg);
+    width: 40px;
+    height: 40px;
+    animation: spinner-rotate 2s infinite linear;
+    -webkit-animation: spinner-rotate 2s infinite linear;
+    user-select: none;
+    pointer-events: none;
+}
+
+.loading > .loads {
+    width: fit-content;
+    margin: 1rem auto;
+    color: #f5f5f5;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+
+@keyframes spinner-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

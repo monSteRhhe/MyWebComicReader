@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- drag box -->
-    <div class="dragbox" id="drag"></div>
+    <div id="dragbox"></div>
 
     <!-- loading process -->
     <div class="loading">
@@ -18,58 +18,44 @@
     </div>
 
     <!-- reading process bar -->
-    <!-- 浏览器窗口缩放会有偏差 -->
-    <div class="processbar"></div>
+    <div id="progressbar"></div>
 
     <!-- comic reader -->
-    <div class="comicreader">
+    <div class="image-viewer">
         <div class="container"></div>
     </div>
 
     <!-- widgets box -->
-    <div class="titlebox">
+    <div class="titlebox hidden">
         <span class="title"></span>
     </div>
-    <div class="toolbox">
+    <div class="toolbox hidden">
         <!-- to-top -->
-        <div class="to-top">
+        <div id="to-top" title="回到顶部">
             <img src="assets/img/fa/chevron-up.svg" />
         </div>
         <!-- close -->
-        <div class="close">
+        <div id="close" title="关闭">
             <img src="assets/img/fa/times.svg" />
         </div>
         <!-- toggle -->
-        <div class="toggle">
+        <div id="toggle" title="开关页间">
             <img src="assets/img/fa/toggle-on.svg" />
         </div>
         <!-- auto scroll -->
-        <div class="autoscroll">
+        <div id="autoscroll" title="自动滚动">
             <img src="assets/img/fa/play-circle.svg" />
         </div>
-        <!-- chapters list -->
-        <div class="chaplist">
-            <img src="assets/img/fa/list.svg" />
-        </div>
-        <!-- previous chapter -->
-        <div class="prev">
-            <img src="assets/img/fa/angle-left.svg" />
-        </div>
-        <!-- next chapter -->
-        <div class="next">
-            <img src="assets/img/fa/angle-right.svg" />
-        </div>
     </div>
-    <div class="chapbox"></div>
 
-    <!-- upload box -->
-    <div class="uploadbox" id="uploadbox">
+    <!-- file input box -->
+    <div id="uploadbox">
         <div class="icon">
             <img src="assets/img/fa/upload.svg" alt="Upload" />
         </div>
-        <div class="tip">拖入或点击选择zip压缩包</div>
+        <div class="tip">拖入或点击选择压缩包</div>
     </div>
-    <input type="file" accept="application/x-zip-compressed" id="upload" style="display: none;"/>
+    <input type="file" accept=".zip, .rar, .7z" id="fileInput" style="display: none;"/>
 
     <!-- info -->
     <div class="info">
@@ -78,9 +64,7 @@
     </div>
 
     <!-- scripts -->
-    <script type="text/javascript" src="assets/js/jquery/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" async src="assets/js/jszip/jszip.min.js?version=3.7.1"></script>
     <script type="text/javascript" async src="assets/js/lazyload/lazyload.min.js?version=2.0.0-rc.2"></script>
-    <script type="text/javascript" async src="assets/js/script.js"></script>
+    <script type="module" async src="assets/js/script.js"></script>
 </body>
 </html>
