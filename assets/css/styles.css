@@ -1,6 +1,6 @@
-@import "/assets/css/base.css";
-@import "/assets/css/scrollbar.css";
-@import "/assets/css/loading.css";
+@import "./base.css";
+@import "./scrollbar.css";
+@import "./loading.css";
 
 #dragbox {
     position: fixed;
